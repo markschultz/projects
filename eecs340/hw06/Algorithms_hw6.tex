@@ -1,0 +1,42 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amsthm, algorithm, algorithmic}
+\renewcommand{\labelenumi}{\alph{enumi})}
+\newcommand{\comment}[1]{}
+\begin{document}
+\title{EECS340 - Algorithms - HW\#6}
+\date{\today}
+\author{Mark Schultz - mxs802}
+\maketitle
+\vspace{2in}
+\section*{Problem 1}
+\begin{algorithmic}[1]
+\STATE \textsc{Sparse-Transpose}(R,C,V,m,n,k)
+\FOR {$i=0$ to $k$}
+\STATE $R\prime [C[i]] \leftarrow R\prime [C[i]]+1$
+\ENDFOR
+\FOR {$i=1$ to $k$}
+\STATE $R\prime [i] \leftarrow R\prime [i] + R\prime [i-1]$
+\ENDFOR
+\FOR {$r \leftarrow m-1$ to $0$}
+\FOR {$j \leftarrow R\prime [r+1]-1$ downto $R[r]$}
+\STATE $C\prime [R\prime [C[j]]] \leftarrow r$
+\STATE $V\prime [R\prime [C[j]]] \leftarrow V[j]$
+\STATE $R\prime [C[j]] \leftarrow R\prime [C[j]]-1$
+\ENDFOR
+\ENDFOR
+\end{algorithmic}
+\section*{Problem 2}
+\begin{algorithmic}[1]
+\STATE \textsc{Stable-Sort(A)}
+\FOR {$i=1$ to $n=A.length$}
+\STATE $A[i]=A[i]-\frac{A[i]}{n+1}$
+\ENDFOR
+\STATE \textsc{Mystery-Sort(A)}
+\FOR {$i=1$ to $n=A.length$}
+\STATE $A[i]=ceil(A[i])$
+\ENDFOR
+\end{algorithmic}
+
+The idea is to subtract an amount from the duplicates such that they get sorted in order but do not become a different number then after Mystery-Sort they are passed through the ceiling function to return the original integers.
+\end{document}

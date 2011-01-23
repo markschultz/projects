@@ -1,0 +1,159 @@
+rm -f scan.c gram.c y.tab.h y.output *.o
+yacc -dv gram.y 
+gram.y: warning: 2 nonterminals useless in grammar
+gram.y: warning: 3 rules useless in grammar
+gram.y:456.1-10: warning: nonterminal useless in grammar: everything
+gram.y:456.19-27: warning: nonterminal useless in grammar: universes
+gram.y:456.19-462.17: warning: rule useless in grammar: everything: universes
+gram.y:464.19-470.17: warning: rule useless in grammar: universes: T_UNIVERSE
+gram.y:471.19-477.17: warning: rule useless in grammar: universes: universes T_UNIVERSE
+conflicts: 1 shift/reduce
+mv -f y.tab.c gram.c
+gcc -g   -c -o gram.o gram.c
+gram.y: In function ‘yyparse’:
+gram.y:45: warning: '0' flag ignored with precision and ‘%x’ gnu_printf format
+flex  -t scan.l > scan.c
+gcc -g   -c -o scan.o scan.c
+gcc -g   -c -o main.o main.c
+gcc -g gram.o scan.o main.o -o ansi_c
+rm gram.c scan.c
+for mxs802 start time: Sat Sep 18 19:03:22 2010
+c: 00000004
+c: 00000005
+c: 00000007
+c: 00000006
+c: 00000008
+c: 00000000
+for mxs802 start time: Sat Sep 18 19:03:22 2010
+c: 00000003
+c: 00000004
+c: 00000005
+c: 00000006
+c: 00000007
+c: 00000000
+for mxs802 start time: Sat Sep 18 19:03:22 2010
+c: 00000002
+c: 00000001
+c: 00000001
+c: 00000001
+for mxs802 start time: Sat Sep 18 19:03:22 2010
+c: 00000020
+c: 0000007e
+c: 00000000
+for mxs802 start time: Sat Sep 18 19:03:22 2010
+c: 0000000a
+c: 0000000d
+c: 00000009
+c: 00000008
+c: 0000005c
+c: 0000003f
+c: 00000027
+c: 00000022
+c: 00000000
+for mxs802 start time: Sat Sep 18 19:03:22 2010
+c: 00000000
+c: 000000ff
+c: 00000000
+for mxs802 start time: Sat Sep 18 19:03:22 2010
+c: 00000000
+c: 000000ff
+c: 00000000
+for mxs802 start time: Sat Sep 18 19:03:22 2010
+c: 00000000
+c: 000000ff
+c: 00000000
+c: 000000ff
+c: 00000000
+c: 000000ff
+c: 00000000
+for mxs802 start time: Sat Sep 18 19:03:22 2010
+c: 00000000
+c: 000000ff
+c: 00000000
+c: 000000ff
+c: 00000000
+c: 000000ff
+c: 00000000
+for mxs802 start time: Sat Sep 18 19:03:22 2010
+c: 00000000
+c: 000000ff
+c: 00000000
+c: 000000ff
+c: 00000000
+c: 000000ff
+c: 00000000
+for mxs802 start time: Sat Sep 18 19:03:22 2010
+c: 00000000
+c: 000000ff
+c: 00000000
+c: 000000ff
+c: 00000000
+c: 000000ff
+c: 00000000
+c: 000000ff
+c: 00000000
+c: 000000ff
+c: 00000000
+c: 000000ff
+c: 00000000
+c: 000000ff
+c: 00000000
+c: 000000ff
+c: 00000000
+c: 000000ff
+c: 00000000
+for mxs802 start time: Sat Sep 18 19:03:22 2010
+c: 00000003
+c: 00000003
+c: 00000003
+c: 00000003
+c: 00000003
+c: 00000003
+c: 00000003
+c: 00000003
+c: 00000003
+c: 00000003
+c: 00000003
+c: 00000003
+c: 00000003
+c: 00000003
+c: 00000003
+c: 00000003
+c: 00000003
+c: 00000003
+c: 00000003
+c: 00000003
+c: 00000003
+c: 00000003
+c: 00000003
+c: 00000003
+c: 00000003
+c: 00000003
+c: 00000003
+c: 00000003
+c: 00000003
+c: 00000003
+c: 00000003
+c: 00000003
+c: 00000003
+c: 00000003
+Warning:  multi-character character constant
+warning, compiler warnings: 1
+for mxs802 start time: Sat Sep 18 19:03:22 2010
+c: 00000063
+c: 00000000
+Warning: data conversion error
+Warning: overflow in implicit constant conversion
+warning, compiler warnings: 2
+for mxs802 start time: Sat Sep 18 19:03:22 2010
+c: 000000ff
+c: 00000000
+Error: invalid digit "9" in octal constant
+warning, compiler errors: 1
+Error: exit: 1
+for mxs802 start time: Sat Sep 18 19:03:22 2010
+for mxs802 start time: Sat Sep 18 19:03:22 2010
+Error: yyparse 1
+
+               ^
+    syntax error

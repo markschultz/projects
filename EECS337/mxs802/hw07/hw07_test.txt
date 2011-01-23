@@ -1,0 +1,119 @@
+rm -f yacc.c y.tab.h y.output *.o
+yacc -dv yacc.y 
+mv -f y.tab.c yacc.c
+gcc -g    -c -o yacc.o yacc.c
+yacc.y:359: warning: conflicting types for ‘yyerror’
+y.tab.c:1715: warning: previous implicit declaration of ‘yyerror’ was here
+flex  -t lex.l > lex.c
+gcc -g    -c -o lex.o lex.c
+gcc -g    -c -o calc.o calc.c
+gcc -g  yacc.o lex.o calc.o -o calc
+rm lex.c yacc.c
+for caseid start time: Tue Oct  5 09:01:41 2010
+SIZEOF int: 4 long: 4 float: 4 double: 8
+Enter calculator expression and $ to exit
+5
+1
+6
+1
+-1
+-5
+-1
+5
+11
+for caseid start time: Tue Oct  5 09:01:41 2010
+SIZEOF int: 4 long: 4 float: 4 double: 8
+Enter calculator expression and $ to exit
+555
+111
+73926
+1
+-111
+-555
+-111
+555
+74371
+for caseid start time: Tue Oct  5 09:01:41 2010
+SIZEOF int: 4 long: 4 float: 4 double: 8
+Enter calculator expression and $ to exit
+3
+2
+1
+1
+-2
+-3
+-4
+1
+-1
+for caseid start time: Tue Oct  5 09:01:41 2010
+SIZEOF int: 4 long: 4 float: 4 double: 8
+Enter calculator expression and $ to exit
+479
+76
+403
+111
+-258
+-77
+-480
+257
+-1
+for caseid start time: Tue Oct  5 09:01:41 2010
+SIZEOF int: 4 long: 4 float: 4 double: 8
+Enter calculator expression and $ to exit
+4.75954
+1.52346
+5.08307
+1.94155
+-1.52346
+-4.75954
+-1.52346
+4.75954
+10.2607
+for caseid start time: Tue Oct  5 09:01:41 2010
+SIZEOF int: 4 long: 4 float: 4 double: 8
+Enter calculator expression and $ to exit
+3
+1
+2
+0
+-3
+-2
+-4
+2
+-1
+for caseid start time: Tue Oct  5 09:01:41 2010
+SIZEOF int: 4 long: 4 float: 4 double: 8
+Enter calculator expression and $ to exit
+365
+73
+31974
+1
+-73
+-365
+-73
+365
+32267
+for caseid start time: Tue Oct  5 09:01:41 2010
+SIZEOF int: 4 long: 4 float: 4 double: 8
+Enter calculator expression and $ to exit
+1365
+273
+447174
+1
+-273
+-1365
+-273
+1365
+448267
+for caseid start time: Tue Oct  5 09:01:41 2010
+SIZEOF int: 4 long: 4 float: 4 double: 8
+Enter calculator expression and $ to exit
+4.75954
+1.52346
+5.08307
+1.94155
+-1.52346
+-4.75954
+-1.52346
+4.75954
+10.2607

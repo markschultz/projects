@@ -1,0 +1,38 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amsthm}
+\renewcommand{\labelenumi}{\alph{enumi})}
+\newcommand{\comment}[1]{}
+\begin{document}
+\title{EECS340 - Algorithms - HW\#3}
+\date{\today}
+\author{Mark Schultz - mxs802}
+\maketitle
+\vspace{2in}
+
+\section*{4.3-1}
+\comment{\begin{enumerate}
+\item 
+\item 
+
+\end{enumerate}
+}
+$T(n)=T(n-1)+n \text{ is } O(n^2)$ \\
+\begin{align*}
+T(n-1) &\leq c(n-1)^2 \\
+T(n) &\leq c(n-1) +n \\
+T(n) &\leq c(n^2-2n+1)+n = cn^2-2cn+c+n = cn^2+n(-2c+1) \text{ Therefore }c>1/2\\
+T(n) &\leq cn^2
+\end{align*}
+
+\section*{4.1}
+\begin{enumerate}
+\setcounter{enumi}{2}
+\item $T(n)=16T(n/4)+n^2$ \\ Here $a=16, b=4,\text{ and }f(n)=n^2$. Using the second case of the master method, $n^{\log_ba}=n^{\log_416}$ which simplifies to $n^2$. This fits the definition of the second case therefore $T(n)=\Theta (n^2\lg n)$.
+\item $T(n)=7T(n/3)+n^2$ \\ Here $a=7, b=3, \text{ and }f(n)=n^2$. To prove the third case we need $n^{\log_ba}=n^{\log_37}$ and because $1<\log_37<2$ we know that $n^2=\Omega(n^{\log_37+\epsilon}$ for $\epsilon >0$ and $7f(n/3)=7(n/3)^2=cf(n)=cn^2$ for $c=7/9$ which is < 1. Therefore $T(n)=\Theta(n^2)$.
+\item $T(n)=7T(n/2)+n^2$ // Here $a=7, b=2, f(n)=n^2\text{ and }n^{\log_ba}=n^{\lg 7}$. We can prove that $n^2=O(n^{\log_27-\epsilon})\text{ for }\epsilon>0\text{ because }2<\lg 7<3$. Therefore this falls under case 1 of the master method and $T(n)=\Theta(n^{\lg 7})$.
+\item $T(n)=2T(n/4)+\sqrt{n}$ \\ Here $a=2, b=4, \text{ and }f(n)=\sqrt{n} \text{. because }\Theta(n^{\log_42})=\sqrt{n}$ this falls under case 2 of the master theorem, therefore, $T(n)=\Theta(\sqrt{n}\lg n)$.
+
+\end{enumerate}
+
+\end{document}

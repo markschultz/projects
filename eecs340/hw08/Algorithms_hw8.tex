@@ -1,0 +1,49 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amsthm, algorithm, algorithmic}
+\renewcommand{\labelenumi}{\alph{enumi})}
+\newcommand{\comment}[1]{}
+\begin{document}
+\title{EECS340 - Algorithms - HW\#8}
+\date{\today}
+\author{Mark Schultz - mxs802}
+\maketitle
+\vspace{1.5in}
+\section*{16.1-2}
+This approach is greedy because it is simply filling the available time in the reverse order of the greedy algorithm described in the chapter. This greedy algorithm will always pick the shortest activity that is compatible giving the max number of activities. The proof for this algorithm is the same as the proof on page 418 of the book because this is essentially the same algorithm.
+
+\section*{16.1-3}
+Counter-example for least duration:\\
+\\
+\begin{tabular}{| c | c | c | c |}
+\hline
+i & 1 & 2 & 3 \\
+\hline
+s & 1 & 5 & 6\\
+f & 6 & 7 & 10\\
+\hline
+\end{tabular}
+\\
+\\
+for earliest start time: \\
+\\
+\begin{tabular}{| c | c | c | c | c |}
+\hline
+i & 1 & 2 & 3 & 4\\
+\hline
+s & 1 & 2 & 3 & 4\\
+f & 5 & 3 & 4 & 5\\
+\hline
+\end{tabular}
+\\
+\\
+for fewest overlaps:
+\vspace{1in}
+\section*{16-1}
+\begin{enumerate}
+\setcounter{enumi}{1}
+\item We assume that if the optimal solutions doesn't contain $c^m$ where $c^m$ is the largest coin, then it is not optimal. We prove the greedy algorithm works by contradiction. Proof: we assume $n > c^m$ for some $n$ and the optimal solution does not contain $c^m$ This is a contradiction because if $a_i \geq c$ then we can replace $c$ of $c^i$ coins with a $c^{i+1}$. Therefore $c^m$ must be in the optimal solution.
+\item By using coins of denominations 1, 5, and 8 and $n=10$ we have the counter example. The greedy algorithm will pick 8,1,1 but the optimal solution is 5,5.
+
+\end{enumerate}
+\end{document}

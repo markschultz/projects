@@ -1,0 +1,75 @@
+Grammar
+
+    0 $accept: everything $end
+
+    1 everything: universes
+
+    2 universes: T_UNIVERSE
+    3          | T_UNIVERSE universes
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+T_UNIVERSE (258) 2 3
+
+
+Nonterminals, with rules where they appear
+
+$accept (4)
+    on left: 0
+everything (5)
+    on left: 1, on right: 0
+universes (6)
+    on left: 2 3, on right: 1 3
+
+
+state 0
+
+    0 $accept: . everything $end
+
+    T_UNIVERSE  shift, and go to state 1
+
+    everything  go to state 2
+    universes   go to state 3
+
+
+state 1
+
+    2 universes: T_UNIVERSE .
+    3          | T_UNIVERSE . universes
+
+    T_UNIVERSE  shift, and go to state 1
+
+    $default  reduce using rule 2 (universes)
+
+    universes  go to state 4
+
+
+state 2
+
+    0 $accept: everything . $end
+
+    $end  shift, and go to state 5
+
+
+state 3
+
+    1 everything: universes .
+
+    $default  reduce using rule 1 (everything)
+
+
+state 4
+
+    3 universes: T_UNIVERSE universes .
+
+    $default  reduce using rule 3 (universes)
+
+
+state 5
+
+    0 $accept: everything $end .
+
+    $default  accept

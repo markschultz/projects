@@ -1,0 +1,91 @@
+rm -f scan.c gram.c y.tab.h y.output *.o
+yacc -dv gram.y 
+mv -f y.tab.c gram.c
+gcc -g   -c -o gram.o gram.c
+flex  -t scan.l > scan.c
+gcc -g   -c -o scan.o scan.c
+scan.l: In function ‘yylex’:
+scan.l:23: warning: format ‘%c’ expects type ‘char *’, but argument 3 has type ‘int *’
+gcc -g   -c -o main.o main.c
+gcc -g gram.o scan.o main.o -o universe
+rm gram.c scan.c
+Starting parse
+Entering state 0
+Reading a token: Next token is token T_UNIVERSE ()
+Shifting token T_UNIVERSE ()
+Entering state 1
+Reading a token: Now at end of input.
+Reducing stack by rule 2 (line 41):
+   $1 = token T_UNIVERSE ()
+-> $$ = nterm universes ()
+Stack now 0
+Entering state 3
+Reducing stack by rule 1 (line 33):
+   $1 = nterm universes ()
+-> $$ = nterm everything ()
+Stack now 0
+Entering state 2
+Now at end of input.
+Shifting token $end ()
+Entering state 5
+Stack now 0 2 5
+Cleanup: popping token $end ()
+Cleanup: popping nterm everything ()
+for mxs802 start time: Tue Sep 14 09:27:15 2010
+T_UNIVERSE: $1=49
+universes: $1=49
+Starting parse
+Entering state 0
+Reading a token: Next token is token T_UNIVERSE ()
+Shifting token T_UNIVERSE ()
+Entering state 1
+Reading a token: Next token is token T_UNIVERSE ()
+Shifting token T_UNIVERSE ()
+Entering state 1
+Reading a token: Next token is token T_UNIVERSE ()
+Shifting token T_UNIVERSE ()
+Entering state 1
+Reading a token: Next token is token T_UNIVERSE ()
+Shifting token T_UNIVERSE ()
+Entering state 1
+Reading a token: Now at end of input.
+Reducing stack by rule 2 (line 41):
+   $1 = token T_UNIVERSE ()
+-> $$ = nterm universes ()
+Stack now 0 1 1 1
+Entering state 4
+Reducing stack by rule 3 (line 48):
+   $1 = token T_UNIVERSE ()
+   $2 = nterm universes ()
+-> $$ = nterm universes ()
+Stack now 0 1 1
+Entering state 4
+Reducing stack by rule 3 (line 48):
+   $1 = token T_UNIVERSE ()
+   $2 = nterm universes ()
+-> $$ = nterm universes ()
+Stack now 0 1
+Entering state 4
+Reducing stack by rule 3 (line 48):
+   $1 = token T_UNIVERSE ()
+   $2 = nterm universes ()
+-> $$ = nterm universes ()
+Stack now 0
+Entering state 3
+Reducing stack by rule 1 (line 33):
+   $1 = nterm universes ()
+-> $$ = nterm everything ()
+Stack now 0
+Entering state 2
+Now at end of input.
+Shifting token $end ()
+Entering state 5
+Stack now 0 2 5
+Cleanup: popping token $end ()
+Cleanup: popping nterm everything ()
+for mxs802 start time: Tue Sep 14 09:27:15 2010
+T_UNIVERSE: $1=52
+T_UNIVERSE: $1=51 universes: $2=52
+T_UNIVERSE: $1=50 universes: $2=51
+T_UNIVERSE: $1=49 universes: $2=50
+universes: $1=49

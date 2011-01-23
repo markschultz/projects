@@ -1,0 +1,685 @@
+#!/bin/sh
+# shar:	Shell Archiver  (v1.22)
+#
+#	Run the following text with /bin/sh to create:
+#	  README
+#	  Makefile
+#	  gram.y
+#	  main.c
+#	  scan.l
+#
+echo "x - extracting README (Text)"
+sed 's/^X//' << 'SHAR_EOF' > README &&
+XThe files in this directory contain the ANSI C grammar from the April 30, 1985
+Xdraft of the proposed standard. This copy also incorporates all bug fixes I
+Xhave seen since the last two postings. With a little work this grammar can
+Xbe made to parse the C that most of us know and love (sort of).
+X
+XThere is one bug fix to the grammar that is in this posting. On line 295
+Xof gram.y it previously read declaration_specifiers instead of
+Xtype_specifier_list as it does now. I believe the folks at the ANSI committee
+Xmade a mistake since if you replace the line with what the original read
+Xyou will end up with 16 shift/reduce errors and 2 reduce/reduce errors
+X(the good ones). As it is, it only has 1 shift/reduce error that occurs
+Xon the if/else construct. YACC creates the correct parser and I don't want
+Xto ugly my grammar up.
+X
+XAnyway, all cumquats unite and generate this sucker. Then just sit and play
+Xwith it. Remember, the grammar accepts things like
+X
+X	"Hello, world"++;
+X	--1.23456;
+X	*'a'
+X
+Xbut this is not a bug, but simply a shuffling of the checking into the
+Xsemantic analysis. If you want to hack it up to do lvalue and rvalue
+Xchecking, I'm sure the ANSI committee would be glad to have your changes.
+XDon't send'em to me though. I don't want'em. Wear this in good health.
+X
+XJeff Lee
+Xgatech!jeff	jeff@gatech	jeff%gatech.CSNet@CSNet-Relay.ARPA
+SHAR_EOF
+chmod 0644 README || echo "restore of README fails"
+echo "x - extracting Makefile (Text)"
+sed 's/^X//' << 'SHAR_EOF' > Makefile &&
+XYFLAGS	= -dv
+XCFLAGS	= -O
+XLFLAGS	=
+X
+XSRC	= gram.y scan.l main.c
+XOBJ	= gram.o scan.o main.o
+X
+X$(BIN)/ansi_c :	$(OBJ)
+X	cc $(CFLAGS) $(OBJ)/ansi_c
+X
+Xscan.o	: y.tab.h
+X
+Xclean	:
+X	rm -f y.tab.h y.output *.o
+SHAR_EOF
+chmod 0644 Makefile || echo "restore of Makefile fails"
+echo "x - extracting gram.y (Text)"
+sed 's/^X//' << 'SHAR_EOF' > gram.y &&
+X%token IDENTIFIER CONSTANT STRING_LITERAL SIZEOF
+X%token PTR_OP INC_OP DEC_OP LEFT_OP RIGHT_OP LE_OP GE_OP EQ_OP NE_OP
+X%token AND_OP OR_OP MUL_ASSIGN DIV_ASSIGN MOD_ASSIGN ADD_ASSIGN
+X%token SUB_ASSIGN LEFT_ASSIGN RIGHT_ASSIGN AND_ASSIGN
+X%token XOR_ASSIGN OR_ASSIGN TYPE_NAME
+X
+X%token TYPEDEF EXTERN STATIC AUTO REGISTER
+X%token CHAR SHORT INT LONG SIGNED UNSIGNED FLOAT DOUBLE CONST VOLATILE VOID
+X%token STRUCT UNION ENUM ELIPSIS RANGE
+X
+X%token CASE DEFAULT IF ELSE SWITCH WHILE DO FOR GOTO CONTINUE BREAK RETURN
+X
+X%start file
+X%%
+X
+Xprimary_expr
+X	: identifier
+X	| CONSTANT
+X	| STRING_LITERAL
+X	| '(' expr ')'
+X	;
+X
+Xpostfix_expr
+X	: primary_expr
+X	| postfix_expr '[' expr ']'
+X	| postfix_expr '(' ')'
+X	| postfix_expr '(' argument_expr_list ')'
+X	| postfix_expr '.' identifier
+X	| postfix_expr PTR_OP identifier
+X	| postfix_expr INC_OP
+X	| postfix_expr DEC_OP
+X	;
+X
+Xargument_expr_list
+X	: assignment_expr
+X	| argument_expr_list ',' assignment_expr
+X	;
+X
+Xunary_expr
+X	: postfix_expr
+X	| INC_OP unary_expr
+X	| DEC_OP unary_expr
+X	| unary_operator cast_expr
+X	| SIZEOF unary_expr
+X	| SIZEOF '(' type_name ')'
+X	;
+X
+Xunary_operator
+X	: '&'
+X	| '*'
+X	| '+'
+X	| '-'
+X	| '~'
+X	| '!'
+X	;
+X
+Xcast_expr
+X	: unary_expr
+X	| '(' type_name ')' cast_expr
+X	;
+X
+Xmultiplicative_expr
+X	: cast_expr
+X	| multiplicative_expr '*' cast_expr
+X	| multiplicative_expr '/' cast_expr
+X	| multiplicative_expr '%' cast_expr
+X	;
+X
+Xadditive_expr
+X	: multiplicative_expr
+X	| additive_expr '+' multiplicative_expr
+X	| additive_expr '-' multiplicative_expr
+X	;
+X
+Xshift_expr
+X	: additive_expr
+X	| shift_expr LEFT_OP additive_expr
+X	| shift_expr RIGHT_OP additive_expr
+X	;
+X
+Xrelational_expr
+X	: shift_expr
+X	| relational_expr '<' shift_expr
+X	| relational_expr '>' shift_expr
+X	| relational_expr LE_OP shift_expr
+X	| relational_expr GE_OP shift_expr
+X	;
+X
+Xequality_expr
+X	: relational_expr
+X	| equality_expr EQ_OP relational_expr
+X	| equality_expr NE_OP relational_expr
+X	;
+X
+Xand_expr
+X	: equality_expr
+X	| and_expr '&' equality_expr
+X	;
+X
+Xexclusive_or_expr
+X	: and_expr
+X	| exclusive_or_expr '^' and_expr
+X	;
+X
+Xinclusive_or_expr
+X	: exclusive_or_expr
+X	| inclusive_or_expr '|' exclusive_or_expr
+X	;
+X
+Xlogical_and_expr
+X	: inclusive_or_expr
+X	| logical_and_expr AND_OP inclusive_or_expr
+X	;
+X
+Xlogical_or_expr
+X	: logical_and_expr
+X	| logical_or_expr OR_OP logical_and_expr
+X	;
+X
+Xconditional_expr
+X	: logical_or_expr
+X	| logical_or_expr '?' logical_or_expr ':' conditional_expr
+X	;
+X
+Xassignment_expr
+X	: conditional_expr
+X	| unary_expr assignment_operator assignment_expr
+X	;
+X
+Xassignment_operator
+X	: '='
+X	| MUL_ASSIGN
+X	| DIV_ASSIGN
+X	| MOD_ASSIGN
+X	| ADD_ASSIGN
+X	| SUB_ASSIGN
+X	| LEFT_ASSIGN
+X	| RIGHT_ASSIGN
+X	| AND_ASSIGN
+X	| XOR_ASSIGN
+X	| OR_ASSIGN
+X	;
+X
+Xexpr
+X	: assignment_expr
+X	| expr ',' assignment_expr
+X	;
+X
+Xconstant_expr
+X	: conditional_expr
+X	;
+X
+Xdeclaration
+X	: declaration_specifiers ';'
+X	| declaration_specifiers init_declarator_list ';'
+X	;
+X
+Xdeclaration_specifiers
+X	: storage_class_specifier
+X	| storage_class_specifier declaration_specifiers
+X	| type_specifier
+X	| type_specifier declaration_specifiers
+X	;
+X
+Xinit_declarator_list
+X	: init_declarator
+X	| init_declarator_list ',' init_declarator
+X	;
+X
+Xinit_declarator
+X	: declarator
+X	| declarator '=' initializer
+X	;
+X
+Xstorage_class_specifier
+X	: TYPEDEF
+X	| EXTERN
+X	| STATIC
+X	| AUTO
+X	| REGISTER
+X	;
+X
+Xtype_specifier
+X	: CHAR
+X	| SHORT
+X	| INT
+X	| LONG
+X	| SIGNED
+X	| UNSIGNED
+X	| FLOAT
+X	| DOUBLE
+X	| CONST
+X	| VOLATILE
+X	| VOID
+X	| struct_or_union_specifier
+X	| enum_specifier
+X	| TYPE_NAME
+X	;
+X
+Xstruct_or_union_specifier
+X	: struct_or_union identifier '{' struct_declaration_list '}'
+X	| struct_or_union '{' struct_declaration_list '}'
+X	| struct_or_union identifier
+X	;
+X
+Xstruct_or_union
+X	: STRUCT
+X	| UNION
+X	;
+X
+Xstruct_declaration_list
+X	: struct_declaration
+X	| struct_declaration_list struct_declaration
+X	;
+X
+Xstruct_declaration
+X	: type_specifier_list struct_declarator_list ';'
+X	;
+X
+Xstruct_declarator_list
+X	: struct_declarator
+X	| struct_declarator_list ',' struct_declarator
+X	;
+X
+Xstruct_declarator
+X	: declarator
+X	| ':' constant_expr
+X	| declarator ':' constant_expr
+X	;
+X
+Xenum_specifier
+X	: ENUM '{' enumerator_list '}'
+X	| ENUM identifier '{' enumerator_list '}'
+X	| ENUM identifier
+X	;
+X
+Xenumerator_list
+X	: enumerator
+X	| enumerator_list ',' enumerator
+X	;
+X
+Xenumerator
+X	: identifier
+X	| identifier '=' constant_expr
+X	;
+X
+Xdeclarator
+X	: declarator2
+X	| pointer declarator2
+X	;
+X
+Xdeclarator2
+X	: identifier
+X	| '(' declarator ')'
+X	| declarator2 '[' ']'
+X	| declarator2 '[' constant_expr ']'
+X	| declarator2 '(' ')'
+X	| declarator2 '(' parameter_type_list ')'
+X	| declarator2 '(' parameter_identifier_list ')'
+X	;
+X
+Xpointer
+X	: '*'
+X	| '*' type_specifier_list
+X	| '*' pointer
+X	| '*' type_specifier_list pointer
+X	;
+X
+Xtype_specifier_list
+X	: type_specifier
+X	| type_specifier_list type_specifier
+X	;
+X
+Xparameter_identifier_list
+X	: identifier_list
+X	| identifier_list ',' ELIPSIS
+X	;
+X
+Xidentifier_list
+X	: identifier
+X	| identifier_list ',' identifier
+X	;
+X
+Xparameter_type_list
+X	: parameter_list
+X	| parameter_list ',' ELIPSIS
+X	;
+X
+Xparameter_list
+X	: parameter_declaration
+X	| parameter_list ',' parameter_declaration
+X	;
+X
+Xparameter_declaration
+X	: type_specifier_list declarator
+X	| type_name
+X	;
+X
+Xtype_name
+X	: type_specifier_list
+X	| type_specifier_list abstract_declarator
+X	;
+X
+Xabstract_declarator
+X	: pointer
+X	| abstract_declarator2
+X	| pointer abstract_declarator2
+X	;
+X
+Xabstract_declarator2
+X	: '(' abstract_declarator ')'
+X	| '[' ']'
+X	| '[' constant_expr ']'
+X	| abstract_declarator2 '[' ']'
+X	| abstract_declarator2 '[' constant_expr ']'
+X	| '(' ')'
+X	| '(' parameter_type_list ')'
+X	| abstract_declarator2 '(' ')'
+X	| abstract_declarator2 '(' parameter_type_list ')'
+X	;
+X
+Xinitializer
+X	: assignment_expr
+X	| '{' initializer_list '}'
+X	| '{' initializer_list ',' '}'
+X	;
+X
+Xinitializer_list
+X	: initializer
+X	| initializer_list ',' initializer
+X	;
+X
+Xstatement
+X	: labeled_statement
+X	| compound_statement
+X	| expression_statement
+X	| selection_statement
+X	| iteration_statement
+X	| jump_statement
+X	;
+X
+Xlabeled_statement
+X	: identifier ':' statement
+X	| CASE constant_expr ':' statement
+X	| DEFAULT ':' statement
+X	;
+X
+Xcompound_statement
+X	: '{' '}'
+X	| '{' statement_list '}'
+X	| '{' declaration_list '}'
+X	| '{' declaration_list statement_list '}'
+X	;
+X
+Xdeclaration_list
+X	: declaration
+X	| declaration_list declaration
+X	;
+X
+Xstatement_list
+X	: statement
+X	| statement_list statement
+X	;
+X
+Xexpression_statement
+X	: ';'
+X	| expr ';'
+X	;
+X
+Xselection_statement
+X	: IF '(' expr ')' statement
+X	| IF '(' expr ')' statement ELSE statement
+X	| SWITCH '(' expr ')' statement
+X	;
+X
+Xiteration_statement
+X	: WHILE '(' expr ')' statement
+X	| DO statement WHILE '(' expr ')' ';'
+X	| FOR '(' ';' ';' ')' statement
+X	| FOR '(' ';' ';' expr ')' statement
+X	| FOR '(' ';' expr ';' ')' statement
+X	| FOR '(' ';' expr ';' expr ')' statement
+X	| FOR '(' expr ';' ';' ')' statement
+X	| FOR '(' expr ';' ';' expr ')' statement
+X	| FOR '(' expr ';' expr ';' ')' statement
+X	| FOR '(' expr ';' expr ';' expr ')' statement
+X	;
+X
+Xjump_statement
+X	: GOTO identifier ';'
+X	| CONTINUE ';'
+X	| BREAK ';'
+X	| RETURN ';'
+X	| RETURN expr ';'
+X	;
+X
+Xfile
+X	: external_definition
+X	| file external_definition
+X	;
+X
+Xexternal_definition
+X	: function_definition
+X	| declaration
+X	;
+X
+Xfunction_definition
+X	: declarator function_body
+X	| declaration_specifiers declarator function_body
+X	;
+X
+Xfunction_body
+X	: compound_statement
+X	| declaration_list compound_statement
+X	;
+X
+Xidentifier
+X	: IDENTIFIER
+X	;
+X%%
+X
+X#include <stdio.h>
+X
+Xextern char yytext[];
+Xextern int column;
+X
+Xyyerror(s)
+Xchar *s;
+X{
+X	fflush(stdout);
+X	printf("\n%*s\n%*s\n", column, "^", column, s);
+X}
+SHAR_EOF
+chmod 0644 gram.y || echo "restore of gram.y fails"
+echo "x - extracting main.c (Text)"
+sed 's/^X//' << 'SHAR_EOF' > main.c &&
+Xmain()
+X{
+X	int yyparse();
+X
+X	return(yyparse());
+X}
+SHAR_EOF
+chmod 0644 main.c || echo "restore of main.c fails"
+echo "x - extracting scan.l (Text)"
+sed 's/^X//' << 'SHAR_EOF' > scan.l &&
+XD			[0-9]
+XL			[a-zA-Z_]
+XH			[a-fA-F0-9]
+XE			[Ee][+-]?{D}+
+XFS			(f|F|l|L)
+XIS			(u|U|l|L)*
+X
+X%{
+X#include <stdio.h>
+X#include "y.tab.h"
+X
+Xvoid count();
+X%}
+X
+X%%
+X"/*"			{ comment(); }
+X
+X"auto"			{ count(); return(AUTO); }
+X"break"			{ count(); return(BREAK); }
+X"case"			{ count(); return(CASE); }
+X"char"			{ count(); return(CHAR); }
+X"const"			{ count(); return(CONST); }
+X"continue"		{ count(); return(CONTINUE); }
+X"default"		{ count(); return(DEFAULT); }
+X"do"			{ count(); return(DO); }
+X"double"		{ count(); return(DOUBLE); }
+X"else"			{ count(); return(ELSE); }
+X"enum"			{ count(); return(ENUM); }
+X"extern"		{ count(); return(EXTERN); }
+X"float"			{ count(); return(FLOAT); }
+X"for"			{ count(); return(FOR); }
+X"goto"			{ count(); return(GOTO); }
+X"if"			{ count(); return(IF); }
+X"int"			{ count(); return(INT); }
+X"long"			{ count(); return(LONG); }
+X"register"		{ count(); return(REGISTER); }
+X"return"		{ count(); return(RETURN); }
+X"short"			{ count(); return(SHORT); }
+X"signed"		{ count(); return(SIGNED); }
+X"sizeof"		{ count(); return(SIZEOF); }
+X"static"		{ count(); return(STATIC); }
+X"struct"		{ count(); return(STRUCT); }
+X"switch"		{ count(); return(SWITCH); }
+X"typedef"		{ count(); return(TYPEDEF); }
+X"union"			{ count(); return(UNION); }
+X"unsigned"		{ count(); return(UNSIGNED); }
+X"void"			{ count(); return(VOID); }
+X"volatile"		{ count(); return(VOLATILE); }
+X"while"			{ count(); return(WHILE); }
+X
+X{L}({L}|{D})*		{ count(); return(check_type()); }
+X
+X0[xX]{H}+{IS}?		{ count(); return(CONSTANT); }
+X0[xX]{H}+{IS}?		{ count(); return(CONSTANT); }
+X0{D}+{IS}?		{ count(); return(CONSTANT); }
+X0{D}+{IS}?		{ count(); return(CONSTANT); }
+X{D}+{IS}?		{ count(); return(CONSTANT); }
+X{D}+{IS}?		{ count(); return(CONSTANT); }
+X'(\\.|[^\\'])+'		{ count(); return(CONSTANT); }
+X
+X{D}+{E}{FS}?		{ count(); return(CONSTANT); }
+X{D}*"."{D}+({E})?{FS}?	{ count(); return(CONSTANT); }
+X{D}+"."{D}*({E})?{FS}?	{ count(); return(CONSTANT); }
+X
+X\"(\\.|[^\\"])*\"	{ count(); return(STRING_LITERAL); }
+X
+X">>="			{ count(); return(RIGHT_ASSIGN); }
+X"<<="			{ count(); return(LEFT_ASSIGN); }
+X"+="			{ count(); return(ADD_ASSIGN); }
+X"-="			{ count(); return(SUB_ASSIGN); }
+X"*="			{ count(); return(MUL_ASSIGN); }
+X"/="			{ count(); return(DIV_ASSIGN); }
+X"%="			{ count(); return(MOD_ASSIGN); }
+X"&="			{ count(); return(AND_ASSIGN); }
+X"^="			{ count(); return(XOR_ASSIGN); }
+X"|="			{ count(); return(OR_ASSIGN); }
+X">>"			{ count(); return(RIGHT_OP); }
+X"<<"			{ count(); return(LEFT_OP); }
+X"++"			{ count(); return(INC_OP); }
+X"--"			{ count(); return(DEC_OP); }
+X"->"			{ count(); return(PTR_OP); }
+X"&&"			{ count(); return(AND_OP); }
+X"||"			{ count(); return(OR_OP); }
+X"<="			{ count(); return(LE_OP); }
+X">="			{ count(); return(GE_OP); }
+X"=="			{ count(); return(EQ_OP); }
+X"!="			{ count(); return(NE_OP); }
+X";"			{ count(); return(';'); }
+X"{"			{ count(); return('{'); }
+X"}"			{ count(); return('}'); }
+X","			{ count(); return(','); }
+X":"			{ count(); return(':'); }
+X"="			{ count(); return('='); }
+X"("			{ count(); return('('); }
+X")"			{ count(); return(')'); }
+X"["			{ count(); return('['); }
+X"]"			{ count(); return(']'); }
+X"."			{ count(); return('.'); }
+X"&"			{ count(); return('&'); }
+X"!"			{ count(); return('!'); }
+X"~"			{ count(); return('~'); }
+X"-"			{ count(); return('-'); }
+X"+"			{ count(); return('+'); }
+X"*"			{ count(); return('*'); }
+X"/"			{ count(); return('/'); }
+X"%"			{ count(); return('%'); }
+X"<"			{ count(); return('<'); }
+X">"			{ count(); return('>'); }
+X"^"			{ count(); return('^'); }
+X"|"			{ count(); return('|'); }
+X"?"			{ count(); return('?'); }
+X
+X[ \t\v\n\f]		{ count(); }
+X.			{ /* ignore bad characters */ }
+X
+X%%
+X
+Xyywrap()
+X{
+X	return(1);
+X}
+X
+Xcomment()
+X{
+X	char c, c1;
+X
+Xloop:
+X	while ((c = input()) != '*' && c != 0)
+X		putchar(c);
+X
+X	if ((c1 = input()) != '/' && c != 0)
+X	{
+X		unput(c1);
+X		goto loop;
+X	}
+X
+X	if (c != 0)
+X		putchar(c1);
+X}
+X
+Xint column = 0;
+X
+Xvoid count()
+X{
+X	int i;
+X
+X	for (i = 0; yytext[i] != '\0'; i++)
+X		if (yytext[i] == '\n')
+X			column = 0;
+X		else if (yytext[i] == '\t')
+X			column += 8 - (column % 8);
+X		else
+X			column++;
+X
+X	ECHO;
+X}
+X
+Xint check_type()
+X{
+X/*
+X* pseudo code --- this is what it should check
+X*
+X*	if (yytext == type_name)
+X*		return(TYPE_NAME);
+X*
+X*	return(IDENTIFIER);
+X*/
+X
+X/*
+X*	it actually will only return IDENTIFIER
+X*/
+X
+X	return(IDENTIFIER);
+X}
+SHAR_EOF
+chmod 0644 scan.l || echo "restore of scan.l fails"
+exit 0

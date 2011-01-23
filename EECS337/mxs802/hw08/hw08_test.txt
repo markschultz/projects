@@ -1,0 +1,54 @@
+rm -f scan.c gram.c y.tab.h y.output *.o
+yacc -dv gram.y 
+conflicts: 1 shift/reduce
+mv -f y.tab.c gram.c
+gcc -g   -c -o gram.o gram.c
+flex  -t scan.l > scan.c
+gcc -g   -c -o scan.o scan.c
+scan.l: In function ‘print_clips’:
+scan.l:154: warning: '0' flag ignored with precision and ‘%x’ gnu_printf format
+scan.l:154: warning: format ‘%08.8x’ expects type ‘unsigned int’, but argument 2 has type ‘struct clips *’
+scan.l:156: warning: '0' flag ignored with precision and ‘%x’ gnu_printf format
+scan.l:157: warning: '0' flag ignored with precision and ‘%x’ gnu_printf format
+scan.l:158: warning: '0' flag ignored with precision and ‘%x’ gnu_printf format
+scan.l:164: warning: format ‘%d’ expects type ‘int’, but argument 2 has type ‘char *’
+gcc -g   -c -o main.o main.c
+gcc -g gram.o scan.o main.o -o ansi_c
+rm gram.c scan.c
+for mxs802 start time: Tue Oct 26 15:55:25 2010
+Error: unsupported data type: SHORT NUL
+Error: unsupported data type: LONG NUL
+Error: unsupported data type: SIGNED NUL
+Error: unsupported data type: UNSIGNED NUL
+Error: unsupported data type: FLOAT NUL
+Error: unsupported data type: DOUBLE NUL
+Error: unsupported data type: VOID UNSIGNED_INT
+Error: unsupported data type: FLOAT INT
+Error: unsupported data type: CHAR INT
+Error: unsupported data type: CHAR TYPEDEF_CHAR
+Error: unsupported data type: VOID CHAR
+Error: unsupported data type: DOUBLE CHAR
+Error: unsupported data type: FLOAT CHAR
+Error: unsupported data type: SIGNED UNSIGNED_INT
+Error: unsupported data type: LONG CHAR
+Error: unsupported data type: SHORT CHAR
+warning, compiler errors: 16
+Error: exit: 16
+for mxs802 start time: Tue Oct 26 15:55:25 2010
+for mxs802 start time: Tue Oct 26 15:55:25 2010
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 10 buffer: CHAR_TYPE
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 9 buffer: INT_TYPE
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 10 buffer: CHAR_TYPE
+Error: yyparse 1
+Error: memory allocation error: 125
+warning, compiler errors: 1
+Error: exit: 1
+
+         ^
+syntax error
+
+
+Answers to questions for hw08:
+1) types now supported: int, char, unsigned-int, unsigned-char.
+2) no this is not supported yet
+3) this type is also not supported

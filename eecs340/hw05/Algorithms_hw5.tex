@@ -1,0 +1,48 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amsthm, algorithm, algorithmic}
+\renewcommand{\labelenumi}{\alph{enumi})}
+\newcommand{\comment}[1]{}
+\begin{document}
+\title{EECS340 - Algorithms - HW\#5}
+\date{\today}
+\author{Mark Schultz - mxs802}
+\maketitle
+\vspace{2in}
+
+\section*{7.2-5}
+For the minimum depth, the smaller part of the partition is always taken. Therefore, i iterations reduce the number of elements to $\alpha^in$. If m is the minimum depth of a leaf we can assume $\alpha^mn=1 \text{ and }\alpha^m=1/n$. If we take the log to solve for m, we get $m\lg\alpha=-\lg n \rightarrow m=-\lg n/\lg\alpha$.
+\\
+\\
+In comparison, for max depth, the larger part of the partition is always taken resulting in the fraction $1-\alpha$ elements at all times. When there is one element left, the max depth M, has been reached. This is shown by $(1-\alpha)^Mn=1 \rightarrow M=-\lg n/\lg(1-\alpha)$.
+
+\section*{7-2}
+\begin{enumerate}
+\item Because all elements are equal, randomized quicksort would have the same running time as the original quicksort. Also because every element is the same, the worst case is achieved and therefore $\Theta (n^2)$. 
+\item I would add the following code before the loop in the pseudo code to produce the desired results.
+
+\begin{algorithmic}[1]
+\STATE $i=p-1$
+\FOR{$j=p$ to $r-1$}
+\IF{$A[j]=x$}
+\STATE exchange $A[i]$ with $A[r-1]$
+\ENDIF
+\ENDFOR
+\end{algorithmic}
+ 
+\item 
+
+\begin{samepage}
+\begin{algorithmic}[1]
+\STATE \textsc{Randomized-Quicksort}(A,p,r)
+\IF{$p < r$}
+\STATE $q,t=\textsc{Randomized-Partition(A,p,r)}$
+\STATE \textsc{Randomized-Quicksort(A,p,q-1)}
+\STATE \textsc{Randomized-Quicksort(A,t,r)}
+\ENDIF
+\end{algorithmic}
+\end{samepage}
+
+\item Adjusting the algorithm gives us expected $\Theta(n-s\cdot\lg n)$ where s is the number of elements that are the same. This takes into account the fact that the adjusted randomized-quicksort does not touch items that are deemed the same.
+\end{enumerate}
+\end{document}

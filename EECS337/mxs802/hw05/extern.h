@@ -1,0 +1,10 @@
+extern	char	*tokens[];
+extern	void	al_error( int length);
+extern	char	*al_buffer( char *text, int length);
+extern	void	de_buffer( char *buffer, int length);
+extern	CLIPS	*al_clips( int token, unsigned char value, int address, int mask, char *buffer, int length);
+extern	void	de_clips( CLIPS *clips);
+extern	void	de_clips_list( CLIPS *clips);
+extern	CLIPS	*end_clips( CLIPS *clips);
+extern	void	print_clips( CLIPS *clips);
+extern	void	print_clips_list( CLIPS *clips);

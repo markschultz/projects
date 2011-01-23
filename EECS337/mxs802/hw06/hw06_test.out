@@ -1,0 +1,122 @@
+rm -f yacc.c y.tab.h y.output *.o
+yacc -dv yacc.y 
+mv -f y.tab.c yacc.c
+gcc -g    -c -o yacc.o yacc.c
+yacc.y: In function ‘yyparse’:
+yacc.y:76: warning: format ‘%d’ expects type ‘int’, but argument 2 has type ‘long int’
+yacc.y: At top level:
+yacc.y:410: warning: conflicting types for ‘yyerror’
+y.tab.c:1807: note: previous implicit declaration of ‘yyerror’ was here
+gcc -g    -c -o calc.o calc.c
+calc.c: In function ‘main’:
+calc.c:31: warning: format ‘%s’ expects type ‘char *’, but argument 3 has type ‘int’
+gcc -g  yacc.o calc.o -lm -o calc
+rm yacc.c
+for mxs802 start time: Tue Oct  5 13:02:38 2010
+SIZEOF int: 4 long: 4 float: 4 double: 8
+Enter calculator expression and $ to exit
+5
+1
+6
+1
+-1
+-5
+-1
+5
+11
+for mxs802 start time: Tue Oct  5 13:02:38 2010
+SIZEOF int: 4 long: 4 float: 4 double: 8
+Enter calculator expression and $ to exit
+555
+111
+73926
+1
+-111
+-555
+-111
+555
+74371
+for mxs802 start time: Tue Oct  5 13:02:38 2010
+SIZEOF int: 4 long: 4 float: 4 double: 8
+Enter calculator expression and $ to exit
+3
+2
+1
+1
+-2
+-3
+-4
+1
+-1
+for mxs802 start time: Tue Oct  5 13:02:38 2010
+SIZEOF int: 4 long: 4 float: 4 double: 8
+Enter calculator expression and $ to exit
+479
+76
+403
+111
+-258
+-77
+-480
+257
+-1
+for mxs802 start time: Tue Oct  5 13:02:38 2010
+SIZEOF int: 4 long: 4 float: 4 double: 8
+Enter calculator expression and $ to exit
+syntax error
+syntax error
+syntax error
+syntax error
+syntax error
+syntax error
+syntax error
+syntax error
+syntax error
+for mxs802 start time: Tue Oct  5 13:02:38 2010
+SIZEOF int: 4 long: 4 float: 4 double: 8
+Enter calculator expression and $ to exit
+syntax error
+syntax error
+syntax error
+syntax error
+syntax error
+syntax error
+syntax error
+syntax error
+syntax error
+for mxs802 start time: Tue Oct  5 13:02:38 2010
+SIZEOF int: 4 long: 4 float: 4 double: 8
+Enter calculator expression and $ to exit
+555
+111
+73926
+1
+-111
+-555
+-111
+555
+74371
+for mxs802 start time: Tue Oct  5 13:02:38 2010
+SIZEOF int: 4 long: 4 float: 4 double: 8
+Enter calculator expression and $ to exit
+syntax error
+syntax error
+syntax error
+syntax error
+syntax error
+syntax error
+syntax error
+syntax error
+syntax error
+for mxs802 start time: Tue Oct  5 13:02:38 2010
+SIZEOF int: 4 long: 4 float: 4 double: 8
+Enter calculator expression and $ to exit
+syntax error
+syntax error
+syntax error
+syntax error
+syntax error
+syntax error
+syntax error
+syntax error
+syntax error

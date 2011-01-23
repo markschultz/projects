@@ -1,0 +1,37 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amsthm, algorithm, algorithmic}
+\renewcommand{\labelenumi}{\alph{enumi})}
+\newcommand{\comment}[1]{}
+\begin{document}
+\title{EECS340 - Algorithms - HW\#7}
+\date{\today}
+\author{Mark Schultz - mxs802}
+\maketitle
+\vspace{1.5in}
+\section*{15.1-2}
+The counter example uses a rod of length 4.\\
+\\
+\begin{tabular}{| c | c | c | c |}
+\hline
+i & 1 & 2 & 3 \\
+d & 1 & 6 & 10 \\
+\hline
+\end{tabular}
+\\
+\\
+The greedy algorithm will choose rod length 3 first and then length 1 giving a total profit of 11. The optimal solution would be 2 subrods of length 2 for a total profit of 12.
+\section*{15.1-3}
+Line 7 of \textsc{Memoized-Cut-Rod-Aux} found on page 366 should be changed to the following:
+\begin{algorithmic}[1]
+\IF{$i==n$}
+\STATE $q=\text{max}(q,p[i]+\textsc{Memoized-Cut-Rod-Aux}(p,n-i,r))$
+\ELSE 
+\STATE $q=\text{max}(q,p[i]+c+\textsc{Memoized-Cut-Rod-Aux}(p,n-i,r))$
+\ENDIF
+\end{algorithmic}
+In the case of $i==n$ there are no more cuts to be made therefore there is no cost of cutting.
+\section*{15.3-6}
+We can tell that this problem exhibits optimal substructure because all substructures are unweighted and optimal. If we know that all subproblems are optimal then we must have the optimal solution otherwise not all of the substructures could be optimal. 
+If $c_k$ is not 0 then the problem is not necessarily optimal substructure. In any case where $c_i$ is a number and all other $c_k$ are 0, the optimal solution cannot be found because the problem disfavors routes of length $c_i$.
+\end{document}

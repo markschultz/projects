@@ -1,0 +1,24 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amsthm, algorithm, algorithmic}
+\renewcommand{\labelenumi}{\alph{enumi})}
+\newcommand{\comment}[1]{}
+\begin{document}
+\title{EECS340 - Algorithms - HW\#9}
+\date{\today}
+\author{Mark Schultz - mxs802}
+\maketitle
+\vspace{1.5in}
+\section*{22.2-7}
+This algorithm will utilize a breadth first search. First it will take one pair (a,b) then it will go through all the pairs to find any other pairs with a in it. Then the algorithm will continue on the second level till every pair is graphed. At this point we can separate each pair into 'babyface' and 'heel' by their level in the graph. All the even levels are in one group, all the odd levels are in the other. While we can't actually know which group is which without more information, we can know that both groups are full of the same type of wrestlers. After every edge is graphed the algorithm will check to see if it was a cross edge. If there is a cross edge between two nodes on the same level then the graph is invalid because it means there is a rivalry between two wrestlers of the same type. In that case there is no solution. 
+\section*{22.3-5}
+\begin{enumerate}
+\item For a forward edge, when u is discovered, there is a white path to v and then when u is grey and v is being explored, v will finish first because it is a descendant of u. Therefore v will be black while u is still grey. Because v is a descendant of u, it has to be discovered and finished before u is finished. It can't be a back edge because v is a descendant of u and by definition is discovered after u. It also cant be a cross edge because in a cross edge u and v are not descendants of each other and are therefore unrelated which means that their discovery and finish times will be unrelated.
+\item Similar to the proof for tree and forward edges, we can prove this is a back edge by process of elimination. This cant be a cross edge for the same reason in a. It also cant be any type of forward edge because if v is the descendant of u, then the discovery times should be switched. 
+\item Using the arguments from the previous 2 proofs, we can see that this can not be either any type of forward edge or a back edge. This must be a cross edge because by definition of cross edge we know that u and v are not related or ancestors of each other. therefore v will be grey and black then u will be grey and black. They are not related so their discovery and finish times do not depend on each other.
+\end{enumerate}
+\section*{22.3-8}
+Counterproof:
+\vspace{1in}\\
+In this case, $u[d]<v[d]$ but v is not a descendant of u, they are both descendants of x.
+\end{document}

@@ -1,0 +1,104 @@
+rm -f scan.c gram.c y.tab.h y.output *.o
+yacc -dv gram.y 
+yacc: 1 shift/reduce conflict.
+mv -f y.tab.c gram.c
+gcc -g   -c -o gram.o gram.c
+flex  -t scan.l > scan.c
+gcc -g   -c -o scan.o scan.c
+gcc -g   -c -o main.o main.c
+gcc -g gram.o scan.o main.o -o ansi_c
+rm gram.c scan.c
+for caseid start time: Sun Sep 19 15:04:26 2010
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 5 buffer: main
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 5 buffer: argc
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 5 buffer: argv
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: w
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: x
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: y
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: z
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: i
+next: 00000000 token: CONSTANT value: 04 address: 00 mask: 00 level: 0 length: 0 buffer: 0
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: j
+next: 00000000 token: CONSTANT value: 05 address: 00 mask: 00 level: 0 length: 0 buffer: 0
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: j
+next: 00000000 token: CONSTANT value: 07 address: 00 mask: 00 level: 0 length: 0 buffer: 0
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: i
+next: 00000000 token: CONSTANT value: 06 address: 00 mask: 00 level: 0 length: 0 buffer: 0
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: w
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: i
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: j
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: x
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: i
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: j
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: i
+next: 00000000 token: CONSTANT value: 08 address: 00 mask: 00 level: 0 length: 0 buffer: 0
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: y
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: i
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: j
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: z
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: i
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: j
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 7 buffer: printf
+next: 00000000 token: STRING_LITERAL value: 00 address: 00 mask: 00 level: 0 length: 28 buffer: w:%d,\tx:%d,\ty:%d,\tz:%d\n
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: w
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: x
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: y
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: z
+next: 00000000 token: CONSTANT value: 00 address: 00 mask: 00 level: 0 length: 0 buffer: 0
+for caseid start time: Sun Sep 19 15:04:26 2010
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 5 buffer: main
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 5 buffer: argc
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 5 buffer: argv
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: w
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: x
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: y
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: z
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: i
+next: 00000000 token: CONSTANT value: 03 address: 00 mask: 00 level: 0 length: 0 buffer: 0
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: j
+next: 00000000 token: CONSTANT value: 04 address: 00 mask: 00 level: 0 length: 0 buffer: 0
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: i
+next: 00000000 token: CONSTANT value: 05 address: 00 mask: 00 level: 0 length: 0 buffer: 0
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: w
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: i
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: j
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: x
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: i
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: j
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: j
+next: 00000000 token: CONSTANT value: 06 address: 00 mask: 00 level: 0 length: 0 buffer: 0
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: i
+next: 00000000 token: CONSTANT value: 07 address: 00 mask: 00 level: 0 length: 0 buffer: 0
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: y
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: i
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: j
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: z
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: i
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: j
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 7 buffer: printf
+next: 00000000 token: STRING_LITERAL value: 00 address: 00 mask: 00 level: 0 length: 28 buffer: w:%d,\tx:%d,\ty:%d,\tz:%d\n
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: w
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: x
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: y
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: z
+next: 00000000 token: CONSTANT value: 00 address: 00 mask: 00 level: 0 length: 0 buffer: 0
+for caseid start time: Sun Sep 19 15:04:26 2010
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: x
+next: 00000000 token: CONSTANT value: 02 address: 00 mask: 00 level: 0 length: 0 buffer: 0
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: b
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: x
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: x
+next: 00000000 token: CONSTANT value: 01 address: 00 mask: 00 level: 0 length: 0 buffer: 0
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 7 buffer: printf
+next: 00000000 token: STRING_LITERAL value: 00 address: 00 mask: 00 level: 0 length: 5 buffer: %d\n
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: x
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: c
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: x
+next: 00000000 token: CONSTANT value: 01 address: 00 mask: 00 level: 0 length: 0 buffer: 0
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 7 buffer: printf
+next: 00000000 token: STRING_LITERAL value: 00 address: 00 mask: 00 level: 0 length: 5 buffer: %d\n
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: x
+next: 00000000 token: CONSTANT value: 01 address: 00 mask: 00 level: 0 length: 0 buffer: 0
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 5 buffer: main
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: b
+next: 00000000 token: IDENTIFIER value: 00 address: 00 mask: 00 level: 0 length: 2 buffer: c

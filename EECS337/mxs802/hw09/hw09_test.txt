@@ -1,0 +1,82 @@
+rm -f scan.c gram.c y.tab.h y.output *.o
+yacc -dv gram.y 
+conflicts: 1 shift/reduce
+mv -f y.tab.c gram.c
+gcc -g   -c -o gram.o gram.c
+flex  -t scan.l > scan.c
+gcc -g   -c -o scan.o scan.c
+gcc -g   -c -o main.o main.c
+gcc -g gram.o scan.o main.o -o ansi_c
+rm gram.c scan.c
+Error: memory deallocation error: 1064
+for caseid start time: Tue Oct 19 10:35:05 2010
+pop symbol table level: 2
+symbol table:
+next: 001004a0 token: INT value: 07 address: 12 mask: 00 level: 2 length: 2 buffer: j
+next: 00100440 token: INT value: 05 address: 11 mask: 00 level: 1 length: 2 buffer: j
+next: 001003c0 token: INT value: 04 address: 10 mask: 00 level: 1 length: 2 buffer: i
+next: 00100390 token: INT value: 00 address: 0f mask: 00 level: 1 length: 2 buffer: z
+next: 00100330 token: INT value: 00 address: 0e mask: 00 level: 1 length: 2 buffer: y
+next: 001002d0 token: INT value: 00 address: 0d mask: 00 level: 1 length: 2 buffer: x
+next: 00000000 token: INT value: 00 address: 0c mask: 00 level: 1 length: 2 buffer: w
+pop symbol table level: 2
+symbol table:
+next: 001004a0 token: INT value: 08 address: 12 mask: 00 level: 2 length: 2 buffer: i
+next: 00100440 token: INT value: 05 address: 11 mask: 00 level: 1 length: 2 buffer: j
+next: 001003c0 token: INT value: 04 address: 10 mask: 00 level: 1 length: 2 buffer: i
+next: 00100390 token: INT value: 00 address: 0f mask: 00 level: 1 length: 2 buffer: z
+next: 00100330 token: INT value: 00 address: 0e mask: 00 level: 1 length: 2 buffer: y
+next: 001002d0 token: INT value: 00 address: 0d mask: 00 level: 1 length: 2 buffer: x
+next: 00000000 token: INT value: 00 address: 0c mask: 00 level: 1 length: 2 buffer: w
+pop symbol table level: 1
+symbol table:
+next: 00100440 token: INT value: 05 address: 11 mask: 00 level: 1 length: 2 buffer: j
+next: 001003c0 token: INT value: 04 address: 10 mask: 00 level: 1 length: 2 buffer: i
+next: 00100390 token: INT value: 00 address: 0f mask: 00 level: 1 length: 2 buffer: z
+next: 00100330 token: INT value: 00 address: 0e mask: 00 level: 1 length: 2 buffer: y
+next: 001002d0 token: INT value: 00 address: 0d mask: 00 level: 1 length: 2 buffer: x
+next: 00000000 token: INT value: 00 address: 0c mask: 00 level: 1 length: 2 buffer: w
+symbol table:
+Error: memory deallocation error: 1064
+for caseid start time: Tue Oct 19 10:35:05 2010
+pop symbol table level: 2
+symbol table:
+next: 001004a0 token: INT value: 05 address: 12 mask: 00 level: 2 length: 2 buffer: i
+next: 00100440 token: INT value: 04 address: 11 mask: 00 level: 1 length: 2 buffer: j
+next: 001003c0 token: INT value: 03 address: 10 mask: 00 level: 1 length: 2 buffer: i
+next: 00100390 token: INT value: 00 address: 0f mask: 00 level: 1 length: 2 buffer: z
+next: 00100330 token: INT value: 00 address: 0e mask: 00 level: 1 length: 2 buffer: y
+next: 001002d0 token: INT value: 00 address: 0d mask: 00 level: 1 length: 2 buffer: x
+next: 00000000 token: INT value: 00 address: 0c mask: 00 level: 1 length: 2 buffer: w
+pop symbol table level: 2
+symbol table:
+next: 001004a0 token: INT value: 06 address: 12 mask: 00 level: 2 length: 2 buffer: j
+next: 00100440 token: INT value: 04 address: 11 mask: 00 level: 1 length: 2 buffer: j
+next: 001003c0 token: INT value: 03 address: 10 mask: 00 level: 1 length: 2 buffer: i
+next: 00100390 token: INT value: 00 address: 0f mask: 00 level: 1 length: 2 buffer: z
+next: 00100330 token: INT value: 00 address: 0e mask: 00 level: 1 length: 2 buffer: y
+next: 001002d0 token: INT value: 00 address: 0d mask: 00 level: 1 length: 2 buffer: x
+next: 00000000 token: INT value: 00 address: 0c mask: 00 level: 1 length: 2 buffer: w
+pop symbol table level: 1
+symbol table:
+next: 00100440 token: INT value: 04 address: 11 mask: 00 level: 1 length: 2 buffer: j
+next: 001003c0 token: INT value: 03 address: 10 mask: 00 level: 1 length: 2 buffer: i
+next: 00100390 token: INT value: 00 address: 0f mask: 00 level: 1 length: 2 buffer: z
+next: 00100330 token: INT value: 00 address: 0e mask: 00 level: 1 length: 2 buffer: y
+next: 001002d0 token: INT value: 00 address: 0d mask: 00 level: 1 length: 2 buffer: x
+next: 00000000 token: INT value: 00 address: 0c mask: 00 level: 1 length: 2 buffer: w
+symbol table:
+Error: memory deallocation error: 385
+for caseid start time: Tue Oct 19 10:35:05 2010
+pop symbol table level: 1
+symbol table:
+next: 00000000 token: INT value: 02 address: 0c mask: 00 level: 0 length: 2 buffer: x
+pop symbol table level: 1
+symbol table:
+next: 00100230 token: INT value: 01 address: 0d mask: 00 level: 1 length: 2 buffer: x
+next: 00000000 token: INT value: 02 address: 0c mask: 00 level: 0 length: 2 buffer: x
+pop symbol table level: 1
+symbol table:
+next: 00000000 token: INT value: 02 address: 0c mask: 00 level: 0 length: 2 buffer: x
+symbol table:
+next: 00000000 token: INT value: 02 address: 0c mask: 00 level: 0 length: 2 buffer: x

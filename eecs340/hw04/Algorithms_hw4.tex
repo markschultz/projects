@@ -1,0 +1,51 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{qtree}
+%\usepackage{tikz, tikz-qtree}
+\usepackage{amsmath, amsthm, algorithm, algorithmic}
+\renewcommand{\labelenumi}{\alph{enumi})}
+\newcommand{\comment}[1]{}
+\begin{document}
+\title{EECS340 - Algorithms - HW\#4}
+\date{\today}
+\author{Mark Schultz - mxs802}
+\maketitle
+\vspace{2in}
+
+\section*{6.1-7}
+The nodes past n/2 are leaves because the children, found at 2n and 2n+1 would be past the end of the array. Therefore they must be leaves because they cannot have any children.
+{\centering\Tree [.A [.B [.D H I ] 
+[.E J K ] ]
+[.C [.F L ][.G ] ] ]\\}
+\begin{center}
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+A & B & C & D & E & F & G & H & I & J & K & L \\ \hline
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\ \hline
+n & n & n & n & n & n & l & l & l & l & l & l \\
+\hline
+\end{tabular}
+\end{center}
+\section*{6.3-3}
+Assume there are $\lceil n/2\rceil \text{ leaves with }h=0$ \\
+$f(T,h)$ is the number of nodes with height h in heap T. \\
+$n(T)$ is the number of nodes in heap T \\
+Hypothesis: $f(T,h)\leq \lceil \frac{n(T)}{{2^{h+1}}}\rceil$ \\
+$f(n(T),h-1)\leq \frac{n(T)}{2^h}$ therefore, if the height of a node in T is h then the height of a node in T$\prime$ is h-1. \\
+\begin{align*}
+f(n(T),h)&=f(n(T\prime),h-1) \\
+&\leq \lceil\frac{n(T\prime)}{2^h}\rceil \\
+n(T\prime)&=\lfloor\frac{n(T)}{2}\rfloor \\
+&\leq \lceil\frac{\lfloor\frac{n(T)}{2}\rfloor}{2^h}\rceil \\
+&\leq \lceil\frac{n(T)}{2^{h+1}}\rceil
+\end{align*}
+\section*{6.5-6}
+\begin{algorithmic}[1]
+\WHILE{$i>1\text{ and }A[\textsc{Parent}(i)]<key$}
+\STATE $A[i]=A[\textsc{Parent}(i)]$
+\STATE $i=\textsc{Parent}(i)$
+\ENDWHILE
+\STATE $A[i]=key$
+\end{algorithmic}
+\end{document}

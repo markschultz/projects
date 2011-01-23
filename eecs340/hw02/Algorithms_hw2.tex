@@ -1,0 +1,44 @@
+\documentclass{article}
+\usepackage{amsmath, amsthm}
+\renewcommand{\labelenumi}{\alph{enumi})}
+\begin{document}
+\title{EECS340 - Algorithms - HW\#2}
+%\date{\today}
+\author{Mark Schultz - mxs802}
+\maketitle
+\vspace{2in}
+
+\section*{3.3}
+\begin{enumerate}
+\item \begin{tabular} {c c c c c}
+$2^{2^{n+1}}$ & $2^{2^{n}}$ & $(n+1)!$ & $n!$ & $e^n$ \\
+$n\cdotp 2^n$ & $2^n$ & $(\frac{3}{2})^n$ & $(\lg n)^{\lg n}=n^{\lg\lg n}$ & $(\lg n)!$ \\
+$n^3$ & $n^2=4^{\lg n}$ & $n \lg n = \lg (n!)$ & $n = 2^{\lg n}$ & $(\sqrt{2})^{\lg n}$ \\
+$2^{\sqrt{2 \lg n}}$ & $\lg ^2 n$ & $\ln n$ & $\sqrt{\lg n}$ & $\ln \ln n$ \\
+$1 = n^{1/\lg n}$ & $$ & $$ & $$ & $$ \\
+
+\end{tabular}  
+\item First we find a value for $f(n)$ that is larger than any value in the table. $f(n)=2^{2^{n+2}}$. Then to make  $f(n)$ cover the whole range without being negative we multiply by $(\sin (n)+1)$ therefore $f(n) = (\sin (n)+1) \cdotp 2^{2^{n+2}}$
+
+\end{enumerate}
+
+
+\section*{3.4}
+\begin{enumerate}
+\item The counter proof is $n = O(n^2)$ but $n^2\neq O(n)$.
+\item The counter proof is $n^21 + n \neq \Theta (n)$
+\item \begin{align*}
+f(n)=O(g(n)) &\Leftrightarrow 0\leq f(n)\leq c\cdotp g(n) \text{ for some }c>0\text{ and all }n>n_0  \\
+&\Rightarrow \lg (f(n))\leq\lg (c\cdotp g(n)) \\
+&\Rightarrow \lg (f(n))\leq\lg c+\lg (g(n))\leq c_2\cdotp\lg (g(n))\text{ for some }c_2>1 \\
+&\Rightarrow\lg (f(n))=O(\lg (g(n)))
+\end{align*}
+\item The counter proof is $2n=O(n)$ but $2^{2n}=4^n\neq O(2^n)$
+\item The counter proof is $f(n)=1/n\neq O(1/n^2)$
+\item 
+\item \vspace{1in} The counter proof is $4^n\neq\Theta (4^{n/2}=2^n)$
+\item 
+
+\end{enumerate}
+
+\end{document}

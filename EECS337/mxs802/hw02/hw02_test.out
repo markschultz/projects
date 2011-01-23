@@ -1,0 +1,137 @@
+rm -f y.tab.h y.output *.o scan.c gram.c
+yacc -dv gram.y 
+conflicts: 1 shift/reduce
+mv -f y.tab.c gram.c
+cc -O   -c -o gram.o gram.c
+lex  -t scan.l > scan.c
+cc -O   -c -o scan.o scan.c
+cc -O   -c -o main.o main.c
+cc -O gram.o scan.o main.o -o ansi_c
+rm gram.c scan.c
+
+
+FILE: main.c
+
+Desc: EECS337 assignment 2
+
+AUTHOR mxs802
+
+DATE   9-6-10
+
+/
+
+int main(int argc, char *argv[])
+{
+	int yyparse();
+
+	return(yyparse());
+}
+
+
+ FILE:		Code_1_6_1.c
+
+ DESC:		EECS 337 Homework Assignment 1
+
+ AUTHOR:	mxs802
+
+ DATE:		August 26, 2010
+
+ EDIT HISTORY:	
+
+/
+
+
+ 	main program
+ /
+int	main( int argc, char *argv[])
+{
+
+ 	enter the sample code from 1.6.1
+ /
+	int w, x, y, z;
+	int i = 4; int j = 5;
+	{    int j = 7;
+	     i = 6;
+	     w = i + j;
+	}
+	x = i + j;
+	{    int i = 8;
+	     y = i + j;
+	}
+	z = i + j;
+
+ 	print the results
+ /
+	printf( "w:%d,\tx:%d,\ty:%d,\tz:%d\n", w, x, y, z);
+
+ 	return success
+ /
+	return 0;
+}
+
+
+ FILE:		Code_1_6_2.c
+
+ DESC:		EECS 337 Homework Assignment 1
+
+ AUTHOR:	mxs802
+
+ DATE:		August 26, 2010
+
+ EDIT HISTORY:	
+
+/
+
+
+ 	main program
+ /
+int	main( int argc, char *argv[])
+{
+
+ 	enter the sample code from 1.6.2
+ /
+	int w, x, y, z;
+	int i = 3; int j =4;
+	{   int i = 5;
+	    w = i + j;
+	}
+	x = i + j;
+	{   int j = 6;
+	    i = 7;
+	    y = i + j;
+	}
+	z = i + j;
+
+ 	print the results
+ /
+	printf( "w:%d,\tx:%d,\ty:%d,\tz:%d\n", w, x, y, z);
+
+ 	return success
+ /
+	return 0;
+}
+
+
+ FILE:		Code_1_6_4.c
+
+ DESC:		EECS 337 Homework Assignment 1
+
+ AUTHOR:	mxs802
+
+ DATE:		August 26, 2010
+
+ EDIT HISTORY:	
+
+/
+
+
+ 	enter the sample code from 1.6.4
+ /
+int x = 2;
+void b() { x = a; printf("%d\n", x); }
+void c() { int x = 1; printf("%d\n", a); }
+void main() { b(); c(); }
+int x = 2;
+void b() { x = (x+1); printf("%d\n", x); }
+void c() { int x = 1; printf("%d\n", (x+1)); }
+void main() { b(); c(); }

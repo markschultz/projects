@@ -1,0 +1,24 @@
+\documentclass{article}
+\usepackage{amsmath, amsthm}
+\renewcommand{\labelenumi}{\alph{enumi})}
+\begin{document}
+\title{EECS340 - Algorithms - HW\#1}
+%\date{\today}
+\author{Mark Schultz - mxs802}
+\maketitle
+\vspace{2in}
+
+\section*{2.3-4}
+\begin{align*}
+T(n) &= \Theta (1) \\
+ &=2T(n/n-1)+\Theta (1)
+\end{align*}
+\section*{2.2}
+\begin{enumerate}
+\item We also need to prove that for each swap it is more in order.
+\item After each loop, A[j] will be greater than A[j-1] 
+\item After each loop, each array A[1 to i] will be sorted in regards to itself. Therefore the whole array will be sorted when i = A.length -1
+\item The worst case running time should be $O(n^2)$. This is the same as the worst case of insertion sort.
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,72 @@
+Group 1  (1.7nm)
+A1 	S 	A 	S
+B1 	S 	B 	S
+C1 	S 	C 	S
+D1 	S 	D 	S
+E1 	S 	E 	S
+F1 	S 	F 	S
+G1 	S 	G 	S
+H1 	S 	H 	S
+  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	 
+Group 2 (2.35nm)  	   	 
+A2 	S 	A 	H 	S
+B2 	S 	B 	A 	S
+C2 	S 	C 	B 	S
+D2 	S 	D 	C 	S
+E2 	S 	E 	D 	S
+F2 	S 	F 	E 	S
+G2 	S 	G 	F 	S
+H2 	S 	H 	G 	S
+  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	 
+Group 3  (3.4nm)  	   	 
+A3 	S 	A 	E 	S
+B3 	S 	B 	F 	S
+C3 	S 	C 	G 	S
+D3 	S 	D 	H 	S
+E3 	S 	E 	A 	S
+F3 	S 	F 	B 	S
+G3 	S 	G 	C 	S
+H3 	S 	H 	D 	S
+  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	 
+Group 4  (4.2nm)  	   	 
+A4 	S 	A 	H 	F 	E 	S
+B4 	S 	B 	A 	G 	F 	S
+C4 	S 	C 	B 	H 	G 	S
+D4 	S 	D 	C 	A 	H 	S
+E4 	S 	E 	D 	B 	A 	S
+F4 	S 	F 	E 	C 	B 	S
+G4 	S 	G 	F 	D 	C 	S
+H4 	S 	H 	G 	E 	D 	S
+  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	 
+Group 5  (5.9nm)
+A5 	S 	A 	H 	F 	E 	A 	S
+B5 	S 	B 	A 	G 	F 	B 	S
+C5 	S 	C 	B 	H 	G 	C 	S
+D5 	S 	D 	C 	A 	H 	D 	S
+E5 	S 	E 	D 	B 	A 	E 	S
+F5 	S 	F 	E 	C 	B 	F 	S
+G5 	S 	G 	F 	D 	C 	G 	S
+H5 	S 	H 	G 	E 	D 	H 	S
+  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	 
+Group 6  (7.6nm) 	  	
+A6 	S 	A 	H 	F 	E 	A 	E 	S
+B6 	S 	B 	A 	G 	F 	B 	F 	S
+C6 	S 	C 	B 	H 	G 	C 	G 	S
+D6 	S 	D 	C 	A 	H 	D 	H 	S
+E6 	S 	E 	D 	B 	A 	E 	A 	S
+F6 	S 	F 	E 	C 	B 	F 	B 	S
+G6 	S 	G 	F 	D 	C 	G 	C 	S
+H6 	S 	H 	G 	E 	D 	H 	D 	S
+
+Group 7  (11.0nm) 	  	
+A7 	S 	A 	H 	F 	E 	A 	E 	A 	E 	S
+B7 	S 	B 	A 	G 	F 	B 	F 	B 	F 	S
+C7 	S 	C 	B 	H 	G 	C 	G 	C 	G 	S
+D7 	S 	D 	C 	A 	H 	D 	H 	D 	H 	S
+E7 	S 	E 	D 	B 	A 	E 	A 	E 	A 	S
+F7 	S 	F 	E 	C 	B 	F 	B 	F 	B 	S
+G7 	S 	G 	F 	D 	C 	G 	C 	G 	C 	S
+H7 	S 	H 	G 	E 	D 	H 	D 	H 	D 	S
+  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	 
+  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	 
+  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	 

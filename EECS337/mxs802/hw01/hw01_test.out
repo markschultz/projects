@@ -1,0 +1,11 @@
+rm -f *.o lex.c yacc.c y.output
+gcc -g   -c -o Code_1_6_1.o Code_1_6_1.c
+gcc Code_1_6_1.o -lm -g  -o Code_1_6_1
+gcc -g   -c -o Code_1_6_2.o Code_1_6_2.c
+gcc Code_1_6_2.o  -lm -g  -o Code_1_6_2
+gcc -g   -c -o Code_1_6_4.o Code_1_6_4.c
+gcc Code_1_6_4.o  -lm -g  -o Code_1_6_4
+w:13,	x:11,	y:13,	z:11
+w:9,	x:7,	y:13,	z:11
+3
+2
