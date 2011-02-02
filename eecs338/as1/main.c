@@ -112,23 +112,24 @@ int main(int argc, char *argv[]) {
 		}	
 	}
 	putenv("HIPPO=1");//after decrementing put back to env
-	if(pid != 0) {sleep(30);}//children wait for parent to wait so they execute in the correct order	
+	//if(pid != 0) {sleep(30);}//children wait for parent to wait so they execute in the correct order	
 	int status;
 	//final process stuff before return
-	if (pid == 0) { //parent
-		sleep(20);
+	if ((pid != 0) && (pid2 != 0)) { //parent
+		if(waitpid(pid,&status,0) == -1) {perror("Error: wait1.");}
+		if(waitpid(pid2,&status,0) == -1) {perror("Error: wait2.");}
 		printf("Final value of Hippo is %d.\n",atoi(getenv("HIPPO"))+1);
-	}	if ((pid !=0) && (pid2 ==0)) { //child2 pwd, get increment print hippo, exit
+	}	if (pid2 == 0) { //child2 pwd, get increment print hippo, exit
 		getcwd(path, MAXPATHLEN);
-		printf("final statement from C2: cwd: %s hippo: %d exiting c2...\n",path,atoi(getenv("HIPPO"))+1);
+		printf("final statement from C2: cwd: %s hippoval: %d\n",path,atoi(getenv("HIPPO"))+1);
 		fflush(NULL);
 		_exit(1);
-	} if ((pid != 0)&&(pid2 != 0)) { //child1 ch, exec, ls, exit
-		if (chdir(path) == -1){perror("Error: chdir.");}//changedir to current dir
+	} if (pid == 0) { //child1 ch, exec, ls, exit
+		sleep(6);
+		if (chdir("..") == -1){perror("Error: chdir.");}//changedir to ..
 		printf("final print from C1: ");
-		if (execlp("ls", path, NULL) == -1){perror("Error: execlp");}
-		printf("exiting c1...\n");
 		fflush(NULL);
+		if (execlp("ls", path, NULL) == -1){perror("Error: execlp");}
 		_exit(1);
 	}
 	return 0;
