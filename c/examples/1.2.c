@@ -1,14 +1,12 @@
 #include <stdio.h>
 
 // print fahrenheit-celsius table
+#define lower 0
+#define upper 300
+#define step 10
 
 main(){
 	float fahr, celsius;
-	int lower, upper, step;
-
-	lower = 0;
-	upper = 300;
-	step = 10;
 
 	fahr = lower;
 	printf(" F      C\n");
