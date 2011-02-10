@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall
+CFLAGS=-Wall -g
 OBJS=
 TARGET=main
 main: $(OBJS)
