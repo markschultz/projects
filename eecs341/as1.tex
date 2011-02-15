@@ -1,19 +1,72 @@
 \documentclass[11pt]{article}
 \usepackage[margin=1in]{geometry}
-\renewcommand{\labelenumi}{\alph{enumi})}
+%\renewcommand{\labelenumi}{\alph{enumi})}
 \begin{document}
 \title{EECS341 - Databases - HW\#1}
 \date{\today}
 \author{Mark Schultz - mxs802}
 \maketitle
 \vspace{.5in}
-\section*{24.3-8}
-\section*{24.1}
+\section*{Question \#1}
+The division operator can be written as $\pi_a(R)-\pi_a((\pi_a(R)\times S)-R)$ where $a$ is the attributes that are unique to $R$.
+\section*{2.2}
+\vspace{2in}
+\section*{4.3}
 \begin{enumerate}
-
-\item
-\item
-\item
-
+\item RA: $\pi_{sname}(\pi_{sid}((\pi_{pid}\sigma_{color = 'red'}Parts)\bowtie Catalog)\bowtie Suppliers)$ \\
+TRC: $\{T|\exists T1\in Suppliers(\exists X\in Parts(X.color = 'red' \wedge \exists Y \in Catalog(Y.pid = X.pid \wedge Y.sid = T1.sid))\wedge T.sname = T1.sname\}$ 
+\setcounter{enumi}{2}
+\item RA: $(\pi_{sid}((\pi_{pid}\sigma_{color='red'}Parts)\bowtie Catalog))\cup(\pi_{sid}\sigma_{address='221PackerStreet'}Suppliers)$ \\
+TRC: $\{T|\exists T1 \in Catalog(\exists X \in Parts(X.color = 'red'\wedge X.pid=T1.pid)\wedge T.sid=T1.sid)\vee\exists T2 \in Suppliers(T2.Address='221packerStreet'\wedge T.sid=T2.sid)\}$ 
+\setcounter{enumi}{4}
+\item RA: $(\pi_{sid,pid}Catalog)/(\pi_{pid}Parts)$ \\
+TRC: $\{t|\exists T1 \in Catalog(\forall X \in Parts(\exists T2 \in Catalog(T2.pid=X.pid \wedge T2.sid=T1.sid))\wedge T.sid=T1.sid)\}$
+\setcounter{enumi}{6}
+\item RA: $(\pi_{sid,pid}Catalog)/(\pi_{pid}\sigma_{color='red'\vee color='green'}Parts)$ \\
+TRC: $\{T|\exists T1 \in Catalog(\forall X \in Parts((X.color \neq 'red' \wedge X.color \neq 'green')\vee \exists T2 \in Catalog(T2.pid = X.pid \wedge T2.sid = T1.sid))\wedge T.sid = T1.sid)\}$
+\setcounter{enumi}{8}
+\item RA: $\pi_{C1.sid,C2.sid}(\sigma_{C1.pid=C2.pid\wedge C1.sid\neq C2.sid\wedge C1.cost>C2.cost}(C1\times C2))$ \\
+TRC: $\{T | \exists T1 \in Catalog(\exists T2 \in Catalog(T2.pid = T1.pid \wedge T2.sid \neq T1.sid \wedge T1.cose > T2.cost \wedge T.sida=T1.sid)\wedge T.sidb=T2.sid)\}$
+\setcounter{enumi}{10}
+\item RA: $((\pi_{sid}\sigma_{sname = 'YosemiteSham'}Suppliers)\bowtie Catalog)-(\pi_{sid,pid,cost}\sigma_{A.cost<B.cost}((\pi_{sid}\sigma_{sname = 'YosemiteSham'}Suppliers)\bowtie Catalog)\times (\pi_{sid}\sigma_{sname = 'YosemiteSham'}Suppliers)\bowtie Catalog)))$ \\
+TRC: $\{T | \exists T1 \in Catalog(\exists X \in Suppliers (X.sname='YosemiteSham'\wedge X.sid = T1.sid)\wedge \neg (\exists S \in Suppliers(S.sname = 'YosemiteSham' \wedge \exists Z \in Catalog(Z.sid = S.sid \wedge Z.cost > T1.cost)))\wedge T.pid=T1.pid)\}$
 \end{enumerate}
+\section*{4.4}
+\begin{enumerate}
+\item Describes names of suppliers that sell red parts for less than 100.
+\item There is an error in the syntax of the statement will return nothing because it projects $sid$ then tries to project $sname$ when it is not available.
+\item Returns supplier names that sell red parts for under 100 and green parts for under 100.
+\item Returns $sid$'s of suppliers that sell red parts for under 100 and green parts for under 100.
+\item Returns the same as \#3.
+\end{enumerate}
+\section*{4.5}
+\begin{enumerate}
+\item RA: $\pi_eid(\sigma_{aname='Boeing'}(Aircraft\bowtie Certified))$ \\
+TRC: $\{t | t \in Certified \wedge \exists A \in Aircraft(A.Aid = t.Aid \wedge A.aname = 'Boeing')\}$ 
+\setcounter{enumi}{2}
+\item RA: $\rho (BonnToMadrid,\sigma_{from = {'Bonn'}\wedge to = {'Madrid'}}(Flights))\pi_aid(\sigma_{cruisingrange > distance}(Aircraft \times BonnToMadrid))$ \\
+TRC: $\{A.aid | A \in Aircraft \wedge \exists F \in Flights(F.from = 'Bonn'\wedge F.to='Madrid'\wedge A.cruisingrange>F.distance)\}$
+\setcounter{enumi}{4}
+\item RA: $\pi_{ename}(Employees\bowtie ((\pi_{eid}(\sigma_{cruisingrange>3000}(Aircraft\bowtie Certified)))\pi_{eid}(\sigma_{aname='Boeing'}(Aircraft \bowtie Certified))))$ \\
+TRC: $\{E.ename | E\in Employees \wedge \exists C \in Certified (\exists A \in Aircraft (A.aid = C.aid \wedge E.eid = C.eid \wedge A.cruisingrange > 3000))\wedge \neg (\exists C2 \in Certified(\exists A2 \in Aircraft(A2.aname = 'Boeing'\wedge C2.aid=A2.aid\wedge C2.eid=E.eid)))\}$
+\setcounter{enumi}{6}
+\item RA: $\rho(E1,Employees) \\
+\rho(E2,Employees) \\
+\rho(E3,\pi_{E2.eid}(E1\bowtie_{E1.salary>E2.salary}E2))\rho(E4,E2\bowtie E3) \\
+\rho(E5,E2\bowtie E3) \\
+\rho(E6,\pi_{E5.eid}(E4\bowtie_{E1.salary>E5.salary}E5)) \\
+(\pi_{eid}E3)-E6$ \\
+TRC: $\{E1.eid | E1 \in Employees \wedge \exists E2 \in Employees (E2.salary> E1.salary \wedge \neg (\exists E3 \in Employees(E3.salary > E2.salary)))\}$
+\setcounter{enumi}{8}
+\item RA: $\rho(R1,Certified)\\
+\rho(R2,Certified) \\
+\rho(R3,Certified) \\
+\rho(R4,Certified) \\
+(\pi_{eid}(\sigma_{(R1.eid=R2.eid=r3.eid)\wedge (R1.aid\neq R2.aid\neq R3.aid)}(R1\times R2 \times R3)))-(\pi_{eid}(\sigma_{(R1.eid=R2.eid=R3.eid=R4.eid)\wedge (R1.aid\neq R2.aid \neq R3.aid \neq R4.aid)}(R1\times R2\times R3\times R4)))$ \\
+TRC: $\{C1.eid | C1 \in Certified ]wedge \exists C2 \in Certified(\exists C3 \in Certified(C1.eid = C2.eid \wedge C2.eid = C3.eid \wedge C1.aid \neq C2.aid \wedge C2.aid \neq C3.aid \wedge C3.aid \neq C1.aid \wedge \neg(\exists C4 \in Certified(C3.eid = C4.eid\wedge C1.aid \neq C4.aid \wedge C2.aid \neq C4.aid \wedge C3.aid \neq C4.aid))))\}$
+\setcounter{enumi}{10}
+\item Because there is no limit to the number of intermediate flights, a relational algebra or calculus equation can not be formed. If the number of intermediate flights was known, then a query could be written.
+\end{enumerate}
+\section*{4.6}
+Relational completeness means that the language can express all queries expressed by relational algebra, but not necessarily every query.
 \end{document}​
