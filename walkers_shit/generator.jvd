@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<jpanel name="Panel0" title="Project" class="0" bordered="0" scrollbars="0" x="0" y="0" dx="0" dy="0" wx="0" wy="0" fill="0" anchor="0" insets="0,0,0,0" maxx="20" maxy="20">
+   <jpanel name="Panel5" title="File Contents" class="1" bordered="1" scrollbars="0" x="0" y="0" dx="20" dy="16" wx="1" wy="1" fill="1" anchor="11" insets="0,0,0,0" maxx="20" maxy="16">
+      <jtextarea name="TxtOut" scrollbars="1" x="0" y="0" dx="20" dy="16" wx="1" wy="1" fill="1" anchor="11" insets="0,0,0,0">
+         <property name="editable">false</property>
+         <property name="lineWrap">true</property>
+      </jtextarea>
+   </jpanel>
+   <jpanel name="Panel6" title="" class="0" bordered="0" scrollbars="0" x="0" y="16" dx="20" dy="4" wx="1" wy="0" fill="1" anchor="11" insets="0,0,0,0" maxx="21" maxy="4">
+      <jbutton name="BtnGen" title="Generate" image="" x="0" y="0" dx="7" dy="2" wx="1" wy="0" fill="1" anchor="11" insets="0,0,0,0">
+         <property name="actionCommand">genFile(Slider.value)</property>
+      </jbutton>
+      <jbutton name="BtnDel" title="Delete" image="" x="7" y="0" dx="7" dy="2" wx="1" wy="0" fill="1" anchor="11" insets="0,0,0,0">
+      </jbutton>
+      <jbutton name="BtnRead" title="Read" image="" x="14" y="0" dx="7" dy="2" wx="1" wy="0" fill="1" anchor="11" insets="0,0,0,0">
+      </jbutton>
+      <jslider name="Slider" x="0" y="2" dx="21" dy="2" wx="1" wy="0" fill="1" anchor="11" insets="0,0,0,0">
+         <property name="majorTickSpacing">10</property>
+         <property name="maximum">50</property>
+         <property name="minorTickSpacing">5</property>
+         <property name="paintTicks">true</property>
+         <property name="value">50</property>
+      </jslider>
+   </jpanel>
+</jpanel>
