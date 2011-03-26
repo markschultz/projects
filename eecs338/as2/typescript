@@ -1,0 +1,36 @@
+Script started on Thu 10 Feb 2011 07:07:27 PM EST
+kzsh\]0;razor@picon: ~/projects/eecs338/as2[1m[3m%[23m[1m[m                                                                                                                                                                     [m[23m[24m[J[32mrazor[32m@picon[00m ~/projects/eecs338/as2 [32m±[33mmaster⚡[00m [31m»[00m [K[m[23m[24m[J[32mrazor[32m@picon[00m ~/projects/eecs338/as2 [32m±[33mmaster⚡[00m [31m»[00m m[Kmake
+k\]0;razor@picon: makegcc -Wall -g main.c -o main
+kzsh\]0;razor@picon: ~/projects/eecs338/as2[1m[3m%[23m[1m[m                                                                                                                                                                     [m[23m[24m[J[32mrazor[32m@picon[00m ~/projects/eecs338/as2 [32m±[33mmaster⚡[00m [31m»[00m [K[m[23m[24m[J[32mrazor[32m@picon[00m ~/projects/eecs338/as2 [32m±[33mmaster⚡[00m [31m»[00m .[K./main
+k\]0;razor@picon: ./mainplayer 1 with pid 12750 spawned.
+player 2 with pid 12751 spawned.
+Game 1:
+12750: coop.	12751: def.
+Game 2:
+12750: coop.	12751: def.
+Game 3:
+12750: coop.	12751: def.
+Game 4:
+12750: coop.	12751: def.
+Game 5:
+12750: coop.	12751: def.
+Game 6:
+12750: coop.	12751: def.
+Game 7:
+12750: coop.	12751: def.
+Game 8:
+12750: coop.	12751: def.
+Game 9:
+12750: coop.	12751: def.
+Game 10:
+12750: coop.	12751: def.
+--------
+Score:
+12750: 1200 months
+12751: 0 months
+player with pid 12750 terminated
+player with pid 12751 terminated
+ref terminating.
+kzsh\]0;razor@picon: ~/projects/eecs338/as2[1m[3m%[23m[1m[m                                                                                                                                                                     [m[23m[24m[J[32mrazor[32m@picon[00m ~/projects/eecs338/as2 [32m±[33mmaster⚡[00m [31m»[00m [K[m[23m[24m[J[32mrazor[32m@picon[00m ~/projects/eecs338/as2 [32m±[33mmaster⚡[00m [31m»[00m e[Kexit
+k\]0;razor@picon: exit
+Script done on Thu 10 Feb 2011 07:07:41 PM EST

@@ -1,0 +1,31 @@
+Script started on Wed 02 Feb 2011 03:00:32 PM EST
+]0;razor@picon: ~/projects/eecs338/as1[1m[7m%[27m[1m[0m                                                                                                                                                                     [0m[27m[24m[J[32mrazor[32m@picon[00m ~/projects/eecs338/as1 [32m±[33mmaster⚡[00m [31m»[00m [K[0m[27m[24m[J[32mrazor[32m@picon[00m ~/projects/eecs338/as1 [32m±[33mmaster⚡[00m [31m»[00m m[Kmake
+]0;razor@picon: makegcc -Wall main.c -o main
+]0;razor@picon: ~/projects/eecs338/as1[1m[7m%[27m[1m[0m                                                                                                                                                                     [0m[27m[24m[J[32mrazor[32m@picon[00m ~/projects/eecs338/as1 [32m±[33mmaster⚡[00m [31m»[00m [K[0m[27m[24m[J[32mrazor[32m@picon[00m ~/projects/eecs338/as1 [32m±[33mmaster⚡[00m [31m»[00m .[K./main
+]0;razor@picon: ./mainParent process started with
+ PID: 30005
+ on HOST: picon
+ by user: (null)
+ at Wed Feb  2 15:00:48 2011
+ in /home/razor/projects/eecs338/as1
+hippo inits as 11
+child 1 with pid 30006 spawned.
+child 2 with pid 30007 spawned.
+the sleeps will take a very long time
+P: 11 little hippopotamus
+C1: 10 little hippopotamus
+C2: 9 little hippopotamus
+P: 8 little hippopotamus
+C1: 7 little hippopotamus
+C2: 6 little hippopotamus
+P: 5 little hippopotamus
+C1: 4 little hippopotamus
+C2: 3 little hippopotamus
+P: 2 little hippopotamus
+C1: 1 little hippopotamus
+final statement from C2: cwd: /home/razor/projects/eecs338/as1 hippoval: 2
+final print from C1: as1
+Final value of Hippo is 2.
+]0;razor@picon: ~/projects/eecs338/as1[1m[7m%[27m[1m[0m                                                                                                                                                                     [0m[27m[24m[J[32mrazor[32m@picon[00m ~/projects/eecs338/as1 [32m±[33mmaster⚡[00m [31m»[00m [K[0m[27m[24m[J[32mrazor[32m@picon[00m ~/projects/eecs338/as1 [32m±[33mmaster⚡[00m [31m»[00m e[Kexit
+]0;razor@picon: exit
+Script done on Wed 02 Feb 2011 03:02:15 PM EST

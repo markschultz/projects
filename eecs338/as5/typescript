@@ -1,0 +1,90 @@
+Script started on Fri 25 Mar 2011 11:49:44 PM EDT
+k..s/eecs338/as5\[1m[3m%[23m[1m[m                                                                               [m[23m[24m[J[32mrazor[32m@picon[00m ~/projects/eecs338/as5 [32m±[33mmaster⚡[00m [31m»[00m [K[m[23m[24m[J[32mrazor[32m@picon[00m ~/projects/eecs338/as5 [32m±[33mmaster⚡[00m [31m»[00m m[Kmake test
+k\rm -rf main
+gcc -Wall -g main.c -o main
+./main
+c going to pass, passCar=1
+c passed, passCar=0
+c going to pass, passCar=1
+c passed, passCar=0
+c going to pass, passCar=1
+c passed, passCar=0
+c going to pass, passCar=1
+c passed, passCar=0
+c going to pass, passCar=1
+c passed, passCar=0
+t going to pass, trainc=1
+yellow
+c going to pass, passCar=1
+c passed, passCar=0
+c going to pass, passCar=1
+c passed, passCar=0
+t going to pass, trainc=1
+yellow
+t going to pass, trainc=1
+yellow
+c going to pass, passCar=1
+c passed, passCar=0
+t going to pass, trainc=1
+yellow
+t going to pass, trainc=1
+yellow
+c going to pass, passCar=1
+c going to pass, passCar=1
+t going to pass, trainc=1
+yellow
+c going to pass, passCar=1
+c going to pass, passCar=1
+c going to pass, passCar=1
+c passed, passCar=0
+c going to pass, passCar=1
+c going to pass, passCar=1
+c passed, passCar=0
+c going to pass, passCar=1
+c going to pass, passCar=1
+c going to pass, passCar=1
+c going to pass, passCar=1
+c passed, passCar=0
+c going to pass, passCar=1
+c going to pass, passCar=1
+c passed, passCar=0
+t going to pass, trainc=1
+yellow
+c going to pass, passCar=1
+c going to pass, passCar=1
+c passed, passCar=0
+c passed, passCar=0
+c passed, passCar=0
+c passed, passCar=0
+c passed, passCar=0
+c passed, passCar=0
+c passed, passCar=0
+c passed, passCar=0
+c passed, passCar=0
+c passed, passCar=0
+c passed, passCar=0
+red
+t passed, trainc=0
+green
+red
+t passed, trainc=0
+green
+red
+t passed, trainc=0
+green
+red
+t passed, trainc=0
+green
+red
+t passed, trainc=0
+green
+red
+t passed, trainc=0
+green
+red
+t passed, trainc=0
+green
+Children have exited.  Cleaning up...
+k..s/eecs338/as5\[1m[3m%[23m[1m[m                                                                               [m[23m[24m[J[32mrazor[32m@picon[00m ~/projects/eecs338/as5 [32m±[33mmaster⚡[00m [31m»[00m [K[m[23m[24m[J[32mrazor[32m@picon[00m ~/projects/eecs338/as5 [32m±[33mmaster⚡[00m [31m»[00m e[Kexit
+k\
+Script done on Fri 25 Mar 2011 11:50:15 PM EDT
