@@ -1,22 +1,28 @@
 CC = gcc
 # -g : allows use of GNU Debugger
 # -Wall : show all warnings
-FLAGS = -g -Wall
+FLAGS = -g -Wall -std=gnu99
 LIBS = # None yet...
-CSOURCE = cookie_client.c cookie_clnt.c cookie.h
+CSOURCEA = cookie_client_t.c cookie_clnt.c cookie.h
+CSOURCEB = cookie_client_j.c cookie_clnt.c cookie.h
 SSOURCE = cookie_server.c cookie_svc.c cookie.h
 RPCSRC = cookie.x
 RPCGEN = cookie.h cookie_clnt.c cookie_svc.c
-CLIENT = client
-SERVER = server
+CLIENTA = tina
+CLIENTB = judy
+SERVER = mother
 
-all: $(CLIENT) $(SERVER)
+all: $(CLIENTA) $(CLIENTB) $(SERVER)
 
-client: rpc $(CSOURCE)
-	$(CC) $(LIBS) $(FLAGS) -o $(CLIENT) $(CSOURCE)
-	chmod 755 $(CLIENT)
+tina: rpc $(CSOURCE)
+	$(CC) $(LIBS) $(FLAGS) -o $(CLIENTA) $(CSOURCEA)
+	chmod 755 $(CLIENTA)
+	
+judy: rpc $(CSOURCE)
+	$(CC) $(LIBS) $(FLAGS) -o $(CLIENTB) $(CSOURCEB)
+	chmod 755 $(CLIENTB)
 
-server: rpc $(SSOURCE)
+mother: rpc $(SSOURCE)
 	$(CC) $(LIBS) $(FLAGS) -o $(SERVER) $(SSOURCE)
 	chmod 755 $(SERVER)
 
@@ -31,4 +37,4 @@ rpc: $(RPCSRC)
 clean:
 	@# Using the '@' sign suppresses echoing
 	@# the line while the command is run
-	rm -f $(CLIENT) $(SERVER) $(RPCGEN)
+	rm -f $(CLIENTA) $(CLIENTB) $(SERVER) $(RPCGEN)
