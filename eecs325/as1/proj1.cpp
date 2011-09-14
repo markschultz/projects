@@ -64,13 +64,14 @@ int main(int argc, char* argv[]) {
 				//pair<string,int> cpair(mac,0);
 				//clist.push_back(cpair);
 				list[mac].name=name;
-				clist.pushback(name);
+				clist.push_back(mac);
+				//cout << mac << endl;
 				list[mac].mac=mac;
 				count[mac]=0;
 			}
 
 		}
-		cout << list.size() << " " << count.size() << endl;
+		//cout << list.size() << " " << count.size() << endl;
 	} else cout << "Cant open file.";
 	mac_list.close();
 	FILE *mac_address = fopen(mac_addr_arg,"rb");
@@ -78,7 +79,7 @@ int main(int argc, char* argv[]) {
 	int bArray[3];
 	int counter = 0;
 	string constructed;
-	List::iterator found;
+	List::const_iterator found;
 	while((byte=fgetc(mac_address)) != EOF){
 		if(counter < 3){ //only load first 3 bytes
 			bArray[counter]=byte;
@@ -98,11 +99,10 @@ int main(int argc, char* argv[]) {
 	return 0;
 }
 void printResults(){
-	vector<string>::const_iterator end = clist.end();
-	Count::const_iterator end = count.end();
-	for(Count::const_iterator it = count.begin(); it != end; ++it){
-		if(it->second !=0) {
-			cout << list[it->first].mac << " " << it->second << " " << list[it->first].name << endl;
+	for(vector<string>::iterator it = clist.begin(); it != clist.end(); ++it){
+		if(count[*it] !=0) {
+			//cout << *it << endl;
+			cout << list[*it].mac << " " << count[*it] << " " << list[*it].name << endl;
 		}
 	}
 	cout << "--:--:-- " << unknown << " " << "UNKNOWN" << endl;
