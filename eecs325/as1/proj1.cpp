@@ -9,7 +9,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <vector>
-//#include <utility>
 
 using namespace std;
 
@@ -21,8 +20,6 @@ struct StringPair{
 };
 typedef map<string,StringPair> List;
 typedef map<string,int> Count;
-//vector<pair<string,int>> clist;
-//pair<string,int> cpair;
 vector<string> clist;
 Count count;
 List list;
@@ -48,30 +45,14 @@ int main(int argc, char* argv[]) {
 				getline(liness,mac,' ');
 				getline(liness,name,' ');
 			}
-		/*	istringstream liness2(mac);
-			string m1,m2,m3;
-			if(liness2.good()){
-				getline(liness2,m1,':');
-				getline(liness2,m2,':');
-				getline(liness2,m3,':');
-			}
-			stringstream ss;
-			int x;
-			ss << std::hex << m1 << m2 << m3;
-			ss >> x;
-		*/
 			if(mac != ""){
-				//pair<string,int> cpair(mac,0);
-				//clist.push_back(cpair);
 				list[mac].name=name;
 				clist.push_back(mac);
-				//cout << mac << endl;
 				list[mac].mac=mac;
 				count[mac]=0;
 			}
 
 		}
-		//cout << list.size() << " " << count.size() << endl;
 	} else cout << "Cant open file.";
 	mac_list.close();
 	FILE *mac_address = fopen(mac_addr_arg,"rb");
@@ -101,7 +82,6 @@ int main(int argc, char* argv[]) {
 void printResults(){
 	for(vector<string>::iterator it = clist.begin(); it != clist.end(); ++it){
 		if(count[*it] !=0) {
-			//cout << *it << endl;
 			cout << list[*it].mac << " " << count[*it] << " " << list[*it].name << endl;
 		}
 	}
