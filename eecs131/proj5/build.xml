@@ -1,0 +1,34 @@
+<project name="DNA" default="test" basedir=".">
+  <property name="testdir" location="test" />
+  <property name="srcdir" location="src" />
+  <property name="full-compile" value="false" />
+
+  <path id="classpath.base"/>
+  
+  <path id="classpath.test">
+  <pathelement location="${testdir}" />
+  <pathelement location="${srcdir}" />
+  <path refid="classpath.base" />
+  </path>
+
+  <target name="clean" >
+  <delete verbose="true">
+  <fileset dir="${testdir}" includes="**/*.class" />
+  </delete>
+  </target>
+
+  <target name="compile" depends="clean">
+  <javac srcdir="${srcdir}" destdir="${testdir}" verbose="${full-compile}" includeantruntime="true" >
+  <classpath refid="classpath.test"/>
+  </javac>
+  </target>
+
+  <target name="test" depends="compile">
+  <junit>
+  <classpath refid="classpath.test" />
+  <formatter type="brief" usefile="false" />
+  <test name="DoubleLinkedListTester" />
+  </junit>
+  </target>
+
+</project>
