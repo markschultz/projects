@@ -18,12 +18,15 @@ public class DoubleLinkedListTester extends TestCase {
 		list1.addToFront(2);
 		list2.addToFront(2);
 		list1.addToFront(1);
+		assertEquals("Testing equals on lists of different lengths", false, list1.equals(list2));
+		assertEquals("Testing equals on reverse of different lengths", false, list2.equals(list1));
 		list2.addToFront(1);
 		assertEquals("Testing equals on equal lists", true, list1.equals(list2));
 		assertEquals("Testing equals on equal lists reverse", true, list2.equals(list1));
-		list2.removeFromFront();
-		assertEquals("Testing equals on lists of different lengths", false, list1.equals(list2));
-		assertEquals("Testing equals on reverse of different lengths", false, list2.equals(list1));
+		list1.addToFront(0);
+		list2.addToFront(10);
+		assertEquals("Testing equals on unequal lists", false, list1.equals(list2));
+		assertEquals("Testing equals on unequal lists reverse", false, list2.equals(list1));
 	}
 
 	/**

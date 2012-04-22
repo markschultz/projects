@@ -1,14 +1,28 @@
 
-
 public class DNA {
 	public enum Base {
 		A, C, G, T
 	}
-	Base base;
 
 	public DoubleLinkedList<Base> list;
 	public DNA() {
 		list = new DoubleLinkedList<Base>();
+	}
+
+	public void addToFront(Base b){
+		list.addToFront(b);
+	}
+
+	public void addToBack(Base b){
+		list.addToBack(b);
+	}
+
+	public Base removeFromBack(){
+		return list.removeFromBack();
+	}
+
+	public Base removeFromFront(){
+		return list.removeFromFront();
 	}
 
 	public String toString() {
