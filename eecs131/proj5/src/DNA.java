@@ -1,3 +1,4 @@
+import java.lang.IllegalArgumentException;
 
 public class DNA {
 	public enum Base {
@@ -30,7 +31,33 @@ public class DNA {
 	}
 
 	public static DNA string2DNA(String s) {
-		return new DNA();
+		if (s == "" || s == null) throw new IllegalArgumentException();
+		DNA froms = new DNA();
+		for (char ch : s.toCharArray()) {
+			if (ch == 'A') froms.addToBack(Base.A);
+			else if (ch == 'C') froms.addToBack(Base.C);
+			else if (ch == 'G') froms.addToBack(Base.G);
+			else if (ch == 'T') froms.addToBack(Base.T);
+			else throw new IllegalArgumentException();
+//			much much better way to do it but we cant use break so....
+//			switch (ch) {
+//				case 'A':
+//					froms.addToBack(Base.A);
+//					break;
+//				case 'C':
+//					froms.addToBack(Base.C);
+//					break;
+//				case 'G':
+//					froms.addToBack(Base.G);
+//					break;
+//				case 'T':
+//					froms.addToBack(Base.T);
+//					break;
+//				default:
+//					throw new IllegalArgumentException();
+//			}
+		}
+		return froms;
 	}
 
 	public boolean splice(DNA dna, int numbases) {
@@ -43,5 +70,4 @@ public class DNA {
 
 	public static void main(String[] args) {
 	}
-
 }

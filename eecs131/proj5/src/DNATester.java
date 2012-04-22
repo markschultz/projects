@@ -9,6 +9,12 @@ public class DNATester extends TestCase {
 	}
 
 	/**
+	 * Tests splice method
+	 */
+	public void testSplice(){
+	}
+
+	/**
 	 * Tests DNA toString
 	 */
 	public void testToString(){
@@ -24,5 +30,26 @@ public class DNATester extends TestCase {
 	 * Tests string2DNA
 	 */
 	public void testString2DNA(){
+		assertEquals("Testing tostring and string2dna are inverse", "ACGT", DNA.string2DNA("ACGT").toString());
+		try {
+			DNA.string2DNA("");
+			fail("string2DNA on empty string did not throw an exception.");
+		}
+		catch (java.lang.IllegalArgumentException e) {
+			/* everything is good */
+		}
+		catch (Exception e) {
+			fail("string2DNA on empty string threw the wrong exception");
+		}
+		try {
+			DNA.string2DNA("BXY");
+			fail("string2DNA on illegal chars did not throw an exception.");
+		}
+		catch (java.lang.IllegalArgumentException e) {
+			/* everything is good */
+		}
+		catch (Exception e) {
+			fail("string2DNA on illegal chars threw the wrong exception");
+		}
 	}
 }
