@@ -27,7 +27,20 @@ public class DoubleLinkedList<T> implements Iterator {
 	 */
 	@Override
 	public boolean equals(Object list){
-
+		if (list == null) return false;
+		if (list == this) return true;
+		if (!(list instanceof DoubleLinkedList)) return false;
+		DoubleLinkedList castList = (DoubleLinkedList)list;
+		castList.resetIterator();
+		this.resetIterator();
+		while(castList.hasNext() && this.hasNext()){
+			if (castList.next().getElement() != this.next().getElement()) {
+				return false;
+			}
+		}
+		if ((castList.hasNext() && !this.hasNext()) || (!castList.hasNext() && this.hasNext())) {
+			return false;
+		}
 		return true;
 	}
 
@@ -36,14 +49,12 @@ public class DoubleLinkedList<T> implements Iterator {
 	 * @param list  appends the nodes of list to the end of this list. list may be destroyed
 	 */
 	public void append(DoubleLinkedList<T> list){
-
 		while(list.hasNext()) {
 			addToBack(list.next().getElement());
 		}
 	}
 
 	public void resetIterator() {
-
 		iterNode = getHead();
 	}
 
@@ -51,7 +62,6 @@ public class DoubleLinkedList<T> implements Iterator {
 	 * {@inheritDoc}
 	 */
 	public boolean hasNext() {
-
 		//THIS WILL ALWAYS RETURN FALSE UNLESS YOU CALL THE resetIterator METHOD
 		if (iterNode == null) {
 			return false;
@@ -65,7 +75,6 @@ public class DoubleLinkedList<T> implements Iterator {
 	 * @return  returns next element from list
 	 */
 	public DLNode<T> next() {
-
 		if (iterNode == null) {
 			throw new NoSuchElementException();
 		} else {
@@ -217,7 +226,7 @@ public class DoubleLinkedList<T> implements Iterator {
 			StringBuilder newString = new StringBuilder();
 			DLNode<T> placeHolder = getHead();
 			while(placeHolder.getNext() != null){
-				newString.append(placeHolder.getElement().toString() + " ");
+				newString.append(placeHolder.getElement().toString());
 				placeHolder = placeHolder.getNext();
 			}
 			newString.append(placeHolder.getElement().toString());
@@ -238,5 +247,4 @@ public class DoubleLinkedList<T> implements Iterator {
 		}
 		return reverseNodes.toString();
 	}
-
 }

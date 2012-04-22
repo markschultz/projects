@@ -7,6 +7,26 @@ import java.util.NoSuchElementException;
 public class DoubleLinkedListTester extends TestCase {
 
 	/**
+	 * Tests the equals method of DoubleLinkedList
+	 */
+	public void testEquals() {
+		DoubleLinkedList<Integer> list1 = new DoubleLinkedList<Integer>();
+		DoubleLinkedList<Integer> list2 = new DoubleLinkedList<Integer>();
+		list1.addToFront(3);
+		list2.addToFront(3);
+		assertEquals("Testing equals on single element list", true, list1.equals(list2));
+		list1.addToFront(2);
+		list2.addToFront(2);
+		list1.addToFront(1);
+		list2.addToFront(1);
+		assertEquals("Testing equals on equal lists", true, list1.equals(list2));
+		assertEquals("Testing equals on equal lists reverse", true, list2.equals(list1));
+		list2.removeFromFront();
+		assertEquals("Testing equals on lists of different lengths", false, list1.equals(list2));
+		assertEquals("Testing equals on reverse of different lengths", false, list2.equals(list1));
+	}
+
+	/**
 	 * Tests the addToFront method of DoubleLinkedList.
 	 */
 	public void testAddToFront() {
@@ -111,7 +131,7 @@ public class DoubleLinkedListTester extends TestCase {
 		list.addToFront(3);
 		list.addToFront(2);
 		list.addToFront(1);
-		assertEquals("Testing toString for three element list", "1 2 3", list.toString());
+		assertEquals("Testing toString for three element list", "123", list.toString());
 		list.removeFromBack();
 		list.removeFromBack();
 		assertEquals("Testing toString for single element list", "1", list.toString());
@@ -127,7 +147,7 @@ public class DoubleLinkedListTester extends TestCase {
 		list.addToFront(3);
 		list.addToFront(2);
 		list.addToFront(1);
-		assertEquals("Testing toStringReverse for three element list", "3 2 1", list.toStringReverse());
+		assertEquals("Testing toStringReverse for three element list", "321", list.toStringReverse());
 		list.removeFromBack();
 		list.removeFromBack();
 		assertEquals("Testing toStringReverse for single element list", "1", list.toStringReverse());
