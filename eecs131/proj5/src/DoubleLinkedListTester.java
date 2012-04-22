@@ -1,4 +1,5 @@
 import junit.framework.TestCase;
+import java.util.NoSuchElementException;
 
 /**
  * A class that tests the methods of the DoubleLinkedList class.
@@ -132,5 +133,31 @@ public class DoubleLinkedListTester extends TestCase {
 		assertEquals("Testing toStringReverse for single element list", "1", list.toStringReverse());
 		list.removeFromBack();
 		assertEquals("Testing toStringReverse for empty list", "", list.toStringReverse());
+	}
+
+	/**
+	 * Tests the iterator features of DoubleLinkedList.
+	 */
+	public void testIterator() {
+		DoubleLinkedList<Integer> list = new DoubleLinkedList<Integer>();
+		list.addToFront(3);
+		list.addToFront(2);
+		list.addToFront(1);
+		assertEquals("make sure iterNode is initially null", null, list.iterNode);
+		list.resetIterator();
+		assertEquals("test reset node equals head", list.getHead(), list.iterNode);
+		assertEquals("test hasnext is true", true, list.hasNext());
+		assertEquals("test first next is first element", new Integer(1), list.next().getElement());
+		assertEquals("test hasnext is true", true, list.hasNext());
+		assertEquals("test second next is second element", new Integer(2), list.next().getElement());
+		assertEquals("test hasnext is true", true, list.hasNext());
+		assertEquals("test last next is last element", new Integer(3), list.next().getElement());
+		assertEquals("test hasnext is false", false, list.hasNext());
+		try{
+			list.next();
+			fail("list.next() should have thrown a NoSuchElementException");
+		} catch (NoSuchElementException ex) {
+			//expected, do nothing
+		}
 	}
 }

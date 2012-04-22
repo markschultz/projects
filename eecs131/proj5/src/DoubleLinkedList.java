@@ -1,7 +1,6 @@
 import java.util.*;
 import java.lang.*;
 
-
 /**
  * A doubly linked linked list.
  */
@@ -12,9 +11,13 @@ public class DoubleLinkedList<T> implements Iterator {
 	/** a reference to the last node of a double linked list */
 	private DLNode<T> tail;
 
+	/** iterator tracker node */
+	public DLNode<T> iterNode;
+
 	/** Create an empty double linked list. */
 	public DoubleLinkedList() {
 		head = tail = null;
+		iterNode = null;
 	}
 
 	/**
@@ -34,6 +37,14 @@ public class DoubleLinkedList<T> implements Iterator {
 	 */
 	public void append(DoubleLinkedList<T> list){
 
+		while(list.hasNext()) {
+			addToBack(list.next().getElement());
+		}
+	}
+
+	public void resetIterator() {
+
+		iterNode = getHead();
 	}
 
 	/**
@@ -41,8 +52,9 @@ public class DoubleLinkedList<T> implements Iterator {
 	 */
 	public boolean hasNext() {
 
-		if (!isEmpty()) {
-			return true;
+		//THIS WILL ALWAYS RETURN FALSE UNLESS YOU CALL THE resetIterator METHOD
+		if (iterNode == null) {
+			return false;
 		} else {
 			return true;
 		}
@@ -54,7 +66,13 @@ public class DoubleLinkedList<T> implements Iterator {
 	 */
 	public DLNode<T> next() {
 
-		return getHead();
+		if (iterNode == null) {
+			throw new NoSuchElementException();
+		} else {
+			DLNode<T> temp = iterNode;
+			iterNode = iterNode.getNext();
+			return temp;
+		}
 	}
 
 	/**

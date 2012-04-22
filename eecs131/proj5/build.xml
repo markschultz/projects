@@ -21,6 +21,7 @@
   <target name="compile" depends="clean">
     <javac srcdir="${srcdir}" destdir="${testdir}" verbose="${full-compile}" includeantruntime="true" >
       <classpath refid="classpath.test"/>
+      <compilerarg value="-Xlint" />
     </javac>
   </target>
 
