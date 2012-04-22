@@ -121,7 +121,8 @@ public class DoubleLinkedListTester extends TestCase {
   /**
    * Tests the toStringReverse method of DoubleLinkedList.
    */
-  public void testToStringReverse() {    DoubleLinkedList<Integer> list = new DoubleLinkedList<Integer>();
+  public void testToStringReverse() {    
+    DoubleLinkedList<Integer> list = new DoubleLinkedList<Integer>();
     list.addToFront(3);
     list.addToFront(2);
     list.addToFront(1);
