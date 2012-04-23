@@ -1,4 +1,5 @@
 import java.lang.IllegalArgumentException;
+import java.util.NoSuchElementException;
 
 public class DNA {
 	public enum Base {
@@ -39,18 +40,22 @@ public class DNA {
 			else if (ch == 'G') froms.addToBack(Base.G);
 			else if (ch == 'T') froms.addToBack(Base.T);
 			else throw new IllegalArgumentException();
-//			much much better way to do it but we cant use break so....
+//			cleaner way to do it but we cant use break
 //			switch (ch) {
 //				case 'A':
+//				case 'a':
 //					froms.addToBack(Base.A);
 //					break;
 //				case 'C':
+//				case 'c':
 //					froms.addToBack(Base.C);
 //					break;
 //				case 'G':
+//				case 'g':
 //					froms.addToBack(Base.G);
 //					break;
 //				case 'T':
+//				case 't':
 //					froms.addToBack(Base.T);
 //					break;
 //				default:
@@ -61,6 +66,17 @@ public class DNA {
 	}
 
 	public boolean splice(DNA dna, int numbases) {
+		try{
+			for (int i = 0; i<numbases; i++) {
+				dna.removeFromFront();
+			}
+		} catch (NoSuchElementException ex) {
+			return false;
+		}
+		if (dna.list.isEmpty()) {
+			return false;
+		}
+		list.append(dna.list);
 		return true;
 	}
 

@@ -1,4 +1,5 @@
 import junit.framework.TestCase;
+import java.util.NoSuchElementException;
 
 public class DNATester extends TestCase {
 
@@ -12,6 +13,28 @@ public class DNATester extends TestCase {
 	 * Tests splice method
 	 */
 	public void testSplice(){
+		DNA test = new DNA();
+		DNA test2 = new DNA();
+		assertEquals("Testing splice on 2 empty lists", false, test.splice(test2, 0));
+		assertEquals("Testing splice on 2 empty lists", false, test.splice(test2, 1));
+		test.addToFront(DNA.Base.A);
+		assertEquals("Testing splice on 2nd empty list", false, test.splice(test2, 1));
+		test2.addToFront(DNA.Base.A);
+		test.removeFromFront();
+		assertEquals("Testing splice on 1st empty list", true, test.splice(test2, 0));
+		assertEquals("Testing splice on 1st empty list", false, test.splice(test2, 1));
+		assertEquals("Testing splice correct elements", "A", test.toString());
+		test.addToBack(DNA.Base.C);
+		test.addToBack(DNA.Base.G);
+		test.addToBack(DNA.Base.T);
+		test2.addToBack(DNA.Base.A);
+		test2.addToBack(DNA.Base.C);
+		test2.addToBack(DNA.Base.G);
+		test2.addToBack(DNA.Base.T);
+		test.splice(test2, 1);
+		assertEquals("Testing splice on 2 populated lists", "ACGTCGT", test.toString());
+		test.splice(test2, 2);
+		assertEquals("Testing longer splice", "ACGTCGTT", test.toString());
 	}
 
 	/**

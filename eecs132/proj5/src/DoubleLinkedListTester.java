@@ -7,6 +7,29 @@ import java.util.NoSuchElementException;
 public class DoubleLinkedListTester extends TestCase {
 
 	/**
+	 * Tests the append method of DoubleLinkedList
+	 */
+	public void testAppend() {
+		DoubleLinkedList<Integer> list1 = new DoubleLinkedList<Integer>();
+		DoubleLinkedList<Integer> list2 = new DoubleLinkedList<Integer>();
+		list1.append(list2);
+		assertEquals("Testing append on 2 empty lists", "", list1.toString());
+		list1.addToFront(3);
+		list1.append(list2);
+		assertEquals("Testing append on 2nd empty list", "3", list1.toString());
+		list1.removeFromFront();
+		list2.addToFront(2);
+		list1.append(list2);
+		assertEquals("Testing append on 1st empty list", "2", list1.toString());
+		list1.addToFront(1);
+		list1.addToBack(3);
+		list2.addToFront(1);
+		list2.addToBack(3);
+		list1.append(list2);
+		assertEquals("Testing append on 2 populated lists", "123123", list1.toString());
+	}
+
+	/**
 	 * Tests the equals method of DoubleLinkedList
 	 */
 	public void testEquals() {

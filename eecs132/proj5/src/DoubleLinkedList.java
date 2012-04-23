@@ -49,6 +49,7 @@ public class DoubleLinkedList<T> implements Iterator {
 	 * @param list  appends the nodes of list to the end of this list. list may be destroyed
 	 */
 	public void append(DoubleLinkedList<T> list){
+		list.resetIterator();
 		while(list.hasNext()) {
 			addToBack(list.next().getElement());
 		}
