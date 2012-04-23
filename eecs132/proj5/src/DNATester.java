@@ -10,6 +10,26 @@ public class DNATester extends TestCase {
 	}
 
 	/**
+	 * Tests overlaps method
+	 */
+	public void testOverlaps(){
+		DNA test = new DNA();
+		DNA test2 = new DNA();
+		assertEquals("Testing overlaps both empty 0 length", true, DNA.overlaps(test1, test2, 0));
+		assertEquals("Testing overlaps both empty length 1", false, DNA.overlaps(test1, test2, 1));
+		test.addToBack(DNA.Base.G);
+		test.addToBack(DNA.Base.T);
+		test.addToBack(DNA.Base.A);
+		test2.addToBack(DNA.Base.A);
+		test2.addToBack(DNA.Base.T);
+		test2.addToBack(DNA.Base.G);
+		assertEquals("Testing overlaps same string length 1", true, DNA.overlaps(test1, test2, 1));
+		assertEquals("Testing overlaps same string length 0", true, DNA.overlaps(test1, test2, 0));
+		assertEquals("Testing overlaps same string length 3", true, DNA.overlaps(test1, test2, 3));
+		assertEquals("Testing no overlaps same string length 4", false, DNA.overlaps(test1, test2, 4));
+	}
+
+	/**
 	 * Tests splice method
 	 */
 	public void testSplice(){
