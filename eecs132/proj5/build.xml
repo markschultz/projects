@@ -1,37 +1,44 @@
 <project name="DNA" default="test" basedir=".">
-  <property name="testdir" location="test" />
-  <property name="srcdir" location="src" />
-  <property name="full-compile" value="false" />
+	<property name="testdir" location="bin" />
+	<property name="srcdir" location="src" />
+	<property name="docdir" location="doc" />
+	<property name="full-compile" value="false" />
 
-  <path id="classpath.base"/>
-  
-  <path id="classpath.test">
-    <pathelement location="${testdir}" />
-    <pathelement location="${srcdir}" />
-    <path refid="classpath.base" />
-  </path>
+	<path id="classpath.base"/>
 
-  <target name="clean" >
-    <mkdir dir="${testdir}"/>
-    <delete verbose="true">
-      <fileset dir="${testdir}" includes="**/*.class" />
-    </delete>
-  </target>
+	<path id="classpath.test">
+		<pathelement location="${testdir}" />
+		<pathelement location="${srcdir}" />
+		<path refid="classpath.base" />
+	</path>
 
-  <target name="compile" depends="clean">
-    <javac srcdir="${srcdir}" destdir="${testdir}" verbose="${full-compile}" includeantruntime="true" >
-      <classpath refid="classpath.test"/>
-      <compilerarg value="-Xlint" />
-    </javac>
-  </target>
+	<target name="clean" >
+		<mkdir dir="${testdir}"/>
+		<delete verbose="true">
+			<fileset dir="${testdir}" includes="**/*.class" />
+		</delete>
+	</target>
 
-  <target name="test" depends="compile">
-    <junit>
-      <classpath refid="classpath.test" />
-      <formatter type="brief" usefile="false" />
-      <test name="DoubleLinkedListTester" />
-      <test name="DNATester" />
-    </junit>
-  </target>
+	<target name="compile" depends="clean">
+		<javac srcdir="${srcdir}" destdir="${testdir}" verbose="${full-compile}" includeantruntime="true" >
+			<classpath refid="classpath.test"/>
+			<compilerarg value="-Xlint:-path" />
+		</javac>
+	</target>
+
+	<target name="test" depends="compile">
+		<junit>
+			<classpath refid="classpath.test" />
+			<formatter type="brief" usefile="false" />
+			<test name="DoubleLinkedListTester" />
+			<test name="DNATester" />
+		</junit>
+	</target>
+
+	<target name="doc" depends="test">
+		<javadoc destdir="${docdir}">
+			<fileset dir="${srcdir}" includes="**/*.java" />
+		</javadoc>
+	</target>
 
 </project>
