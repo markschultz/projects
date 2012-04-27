@@ -13,13 +13,13 @@ public class DNATester extends TestCase {
 	 * Tests overlaps method
 	 */
 	public void testOverlaps(){
-		DNA test = new DNA();
+		DNA test1 = new DNA();
 		DNA test2 = new DNA();
 		assertEquals("Testing overlaps both empty 0 length", true, DNA.overlaps(test1, test2, 0));
 		assertEquals("Testing overlaps both empty length 1", false, DNA.overlaps(test1, test2, 1));
-		test.addToBack(DNA.Base.G);
-		test.addToBack(DNA.Base.T);
-		test.addToBack(DNA.Base.A);
+		test1.addToBack(DNA.Base.G);
+		test1.addToBack(DNA.Base.T);
+		test1.addToBack(DNA.Base.A);
 		test2.addToBack(DNA.Base.A);
 		test2.addToBack(DNA.Base.T);
 		test2.addToBack(DNA.Base.G);
