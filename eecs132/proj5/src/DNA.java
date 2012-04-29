@@ -99,23 +99,41 @@ public class DNA {
 
 	public static void main(String[] args) {
 		if (args.length == 2) {
-			String dnas1 = args[0];
-			String dnas2 = args[1];
-			DNA dna1 = new DNA(args[0]);
-			DNA dna2 = new DNA(args[1]);
+			DNA dna1;
+			DNA dna2;
+			try {
+				dna1 = DNA.string2DNA(args[0]);
+				dna2 = DNA.string2DNA(args[1]);
+				int smallest = 0;
+				int largestOverlapA = 0;
+				int largestOverlapB = 0;
+				if (dna1.toString().length() > dna2.toString().length()) {
+					smallest = dna2.toString().length();
+				} else {
+					smallest = dna1.toString().length();
+				}
+				for (int i = 0; i <= smallest; i++) {
+					if (DNA.overlaps(dna1, dna2, i)) {
+						largestOverlapA = i;
+					}
+				}
+				for (int i = 0; i <= smallest; i++) {
+					if (DNA.overlaps(dna2, dna1, i)) {
+						largestOverlapB = i;
+					}
+				}
+				if (largestOverlapA >= largestOverlapB) {
+					dna1.splice(dna2, largestOverlapA);
+					System.out.println("Created DNA: "+dna1.toString());
+				} else {
+					dna2.splice(dna1, largestOverlapB);
+					System.out.println("Created DNA: "+dna2.toString());
+				}
+			} catch (IllegalArgumentException ex) {
+				System.out.println("Please supply 2 DNA strings");
+			}
 		} else {
 			System.out.println("Please supply 2 DNA strings");
 		}
-		int largest = 0;
-		if (dna1.length() > dna2.length()) {
-			largest = dna2.length();
-		} else {
-			largest = dna1.length();
-		}
-		for (int i = largest; i >= 0; i--) {
-			
-		}
-
-
 	}
 }
