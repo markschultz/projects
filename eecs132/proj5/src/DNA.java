@@ -81,7 +81,20 @@ public class DNA {
 	}
 
 	public static boolean overlaps(DNA dna1, DNA dna2, int n) {
-		return true;
+		String dnas1 = dna1.toString();
+		String dnas2 = dna2.toString();
+		if((dnas1.length() == 0 || dnas2.length() == 0) && n > 0){
+			return false;
+		}
+		String end1;
+		String beg2;
+		try{
+			end1 = dnas1.substring(dnas1.length()-n);
+			beg2 = dnas2.substring(0,n);
+		} catch (IndexOutOfBoundsException ex) {
+			return false;
+		}
+		return end1.equals(beg2);
 	}
 
 	public static void main(String[] args) {
