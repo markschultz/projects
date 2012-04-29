@@ -14,6 +14,9 @@ public class DNATester extends TestCase {
 	 */
 	public void testMain(){
 		DNA test = new DNA();
+		String[] args3 = {"","CGT"};
+		System.out.println("Manually check equals: Incompatible input");
+		DNA.main(args3);
 		String[] args4 = {"CGT","CGT"};
 		System.out.println("Manually check equals: CGT");
 		DNA.main(args4);

@@ -65,6 +65,7 @@ public class DNA {
 	 * Converts string to DNA
 	 * @param s string of base pairs
 	 * @return DNA object containing given base pairs
+	 * @throws IllegalArgumentException when the given string cannot be converted to DNA
 	 */
 	public static DNA string2DNA(String s) {
 		//throw exception when string is empty, null or contains non-dna letters
