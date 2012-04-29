@@ -4,9 +4,27 @@ import java.util.NoSuchElementException;
 public class DNATester extends TestCase {
 
 	/**
-	 * Tests whatever
+	 * Tests extra credit main method
 	 */
-	public void testWhatever(){
+	public void testExtraCredit(){
+	}
+
+	/**
+	 * Tests main method
+	 */
+	public void testMain(){
+		DNA test = new DNA("","");
+		assertEquals("Testing main with 2 empty strings", "", test.toString());
+		test = new DNA("CGT","");
+		assertEquals("Testing main with first empty string", "CGT", test.toString());
+		test = new DNA("","CGT");
+		assertEquals("Testing main with second empty string", "CGT", test.toString());
+		test = new DNA("CGT","CGT");
+		assertEquals("Testing main with identical strings", "CGT", test.toString());
+		test = new DNA("ACGT","CGTA");
+		assertEquals("Testing main with 3 overlap strings", "ACGTA", test.toString());
+		test = new DNA("AAAA","GGGG");
+		assertEquals("Testing main with 0 overlap strings", "AAAAGGGG", test.toString());
 	}
 
 	/**

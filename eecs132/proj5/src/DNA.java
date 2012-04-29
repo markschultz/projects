@@ -98,5 +98,24 @@ public class DNA {
 	}
 
 	public static void main(String[] args) {
+		if (args.length == 2) {
+			String dnas1 = args[0];
+			String dnas2 = args[1];
+			DNA dna1 = new DNA(args[0]);
+			DNA dna2 = new DNA(args[1]);
+		} else {
+			System.out.println("Please supply 2 DNA strings");
+		}
+		int largest = 0;
+		if (dna1.length() > dna2.length()) {
+			largest = dna2.length();
+		} else {
+			largest = dna1.length();
+		}
+		for (int i = largest; i >= 0; i--) {
+			
+		}
+
+
 	}
 }
